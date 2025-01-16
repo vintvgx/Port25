@@ -122,7 +122,7 @@ const PageScroller: React.FC<PageScrollerProps> = ({ children }) => {
         style={{ transform: `translateY(-${currentPage * 100}%)` }}
       >
         {pages.map((page, index) => (
-          <div key={index} className="h-screen w-full pt-20 pb-16">
+          <div key={index} className="h-screen w-full ">
             {page}
           </div>
         ))}
