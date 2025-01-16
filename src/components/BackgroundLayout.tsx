@@ -9,8 +9,8 @@ interface BackgroundLayoutProps {
 const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) => {
   return (
     <div className="relative min-h-screen w-full">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center bg-transparent">
+      {/* Header - Fixed position with higher z-index */}
+      <header className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center">
         <div className="text-xl font-bold">
           Kareem Saygbe
         </div>
@@ -23,13 +23,13 @@ const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) => {
         </nav>
       </header>
 
-      {/* Main Content - Full height and width */}
-      <main className="h-screen w-full">
+      {/* Main Content */}
+      <main className="relative">
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="fixed bottom-0 left-0 right-0 z-50 p-4 text-center bg-transparent">
+      {/* Footer - Fixed position with higher z-index */}
+      <footer className="fixed bottom-0 left-0 right-0 z-50 p-4 text-center">
         <p className="text-sm">
           © {new Date().getFullYear()} Kareem Saygbe. All rights reserved.
         </p>
