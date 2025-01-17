@@ -1,5 +1,8 @@
 import { ProjectConfig } from '@/types/Project';
 import React, { useEffect, useState } from 'react';
+import {  P, Link, H2 } from '@/components/Typography';
+import Video from "next-video";
+
 
 interface ProjectCardProps extends ProjectConfig {
   className?: string;
@@ -11,6 +14,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   backgroundColor = 'bg-blue-100',
   technologies,
+  contentVideo,
   links,
   className = '',
   isVisible = false,
@@ -27,8 +31,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div className={`h-screen w-full flex items-center justify-center ${bgColor} ${className} transition-colors duration-500`}>
       <div className="text-center max-w-2xl mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-4">{title}</h2>
-        <p className="text-xl mb-6">{description}</p>
+        <H2 className="text-4xl font-bold mb-4">{title}</H2>
+        <P className="text-xl mb-6">{description}</P>
         
         {technologies && (
           <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -43,22 +47,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {links && (
           <div className="flex justify-center gap-4">
             {links.demo && (
-              <a href={links.demo} className="text-blue-600 hover:text-blue-800">
+              <Link href={links.demo} className="text-blue-600 hover:text-blue-800">
                 Demo
-              </a>
+              </Link>
             )}
             {links.github && (
-              <a href={links.github} className="text-blue-600 hover:text-blue-800">
+              <Link href={links.github} className="text-blue-600 hover:text-blue-800">
                 GitHub
-              </a>
+              </Link>
             )}
             {links.live && (
-              <a href={links.live} className="text-blue-600 hover:text-blue-800">
+              <Link href={links.live} className="text-blue-600 hover:text-blue-800">
                 Live Site
-              </a>
+              </Link>
             )}
           </div>
         )}
+      </div>
+      <div>
+        { contentVideo && <Video src={contentVideo} />}
       </div>
     </div>
   );

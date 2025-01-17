@@ -4,6 +4,7 @@ export interface ProjectConfig {
     description: string;
     backgroundColor?: string;
     technologies?: string[];
+    contentVideo?: string;
     links?: {
       demo?: string;
       github?: string;

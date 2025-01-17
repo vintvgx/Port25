@@ -2,8 +2,8 @@ import { ProjectConfig } from "@/types/Project";
 
 export const projects: ProjectConfig[] = [
   {
-    id: 'project1',
-    title: 'Project 1',
+    id: 'urbanv3',
+    title: 'Urban AI',
     description: 'An innovative web application',
     backgroundColor: 'bg-blue-500',
     technologies: ['React', 'TypeScript', 'Tailwind'],
@@ -18,6 +18,7 @@ export const projects: ProjectConfig[] = [
     description: 'A revolutionary mobile app',
     backgroundColor: 'bg-green-500',
     technologies: ['React Native', 'Firebase', 'Redux'],
+    contentVideo: '@videos/COLLECTIONS.mov',
     links: {
       live: 'https://project2.com'
     }
