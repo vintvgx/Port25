@@ -1,4 +1,4 @@
-import { ProjectConfig } from '@/components/ProjectCard';
+import { ProjectConfig } from "@/types/Project";
 
 export const projects: ProjectConfig[] = [
   {

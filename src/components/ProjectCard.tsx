@@ -1,17 +1,5 @@
+import { ProjectConfig } from '@/types/Project';
 import React, { useEffect, useState } from 'react';
-
-export interface ProjectConfig {
-  id: string;
-  title: string;
-  description: string;
-  backgroundColor?: string;
-  technologies?: string[];
-  links?: {
-    demo?: string;
-    github?: string;
-    live?: string;
-  };
-}
 
 interface ProjectCardProps extends ProjectConfig {
   className?: string;
