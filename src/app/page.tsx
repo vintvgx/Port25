@@ -7,7 +7,7 @@ import PageScroller from '../components/PageScroller';
 // import Project3 from '../components/Project3';
 import BackgroundLayout from '@/components/BackgroundLayout';
 import ProjectCard from '@/components/ProjectCard';
-import { projects } from '@/config/projects';
+import { projects as projectData } from '@/config/projectData';
 
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         {/* <Project1 />
         <Project2 />
         <Project3 /> */}
-        {projects.map((project) => (
+        {projectData.map((project) => (
           <ProjectCard key={project.id} {...project} />
         ))}
       </PageScroller>

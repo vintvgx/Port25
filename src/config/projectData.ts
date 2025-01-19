@@ -1,4 +1,5 @@
 import { ProjectConfig } from "@/types/Project";
+// import COLLECTIONS from "https://comm-port-bucket.s3.us-east-1.amazonaws.com/1.0.6/Collections.mp4";
 
 export const projects: ProjectConfig[] = [
   {
@@ -18,7 +19,7 @@ export const projects: ProjectConfig[] = [
     description: 'A revolutionary mobile app',
     backgroundColor: 'bg-green-500',
     technologies: ['React Native', 'Firebase', 'Redux'],
-    contentVideo: '@videos/COLLECTIONS.mov',
+    contentVideo: `/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/Collections.mp4')}`,
     links: {
       live: 'https://project2.com'
     }
