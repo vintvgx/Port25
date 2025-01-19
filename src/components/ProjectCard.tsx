@@ -4,6 +4,7 @@ import {  P, Link, H2 } from '@/components/Typography';
 import Video from "next-video";
 
 
+
 interface ProjectCardProps extends ProjectConfig {
   className?: string;
   isVisible?: boolean;
@@ -29,8 +30,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   }, [isVisible, backgroundColor]);
 
   return (
-    <div className={`h-screen w-full flex items-center justify-center ${bgColor} ${className} transition-colors duration-500`}>
-      <div className="text-center max-w-2xl mx-auto px-4">
+    <div className={`h-screen w-full flex items-center justify-center ${bgColor} ${className} transition-colors duration-500 relative overflow-hidden`}>
+      {contentVideo && (
+        <div className="absolute inset-0 w-full h-full">
+          <Video 
+            src={contentVideo} 
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <div className="text-center max-w-2xl mx-auto px-4 relative z-10">
         <H2 className="text-4xl font-bold mb-4">{title}</H2>
         <P className="text-xl mb-6">{description}</P>
         
@@ -63,9 +72,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
         )}
-      </div>
-      <div>
-        { contentVideo && <Video src={contentVideo} />}
       </div>
     </div>
   );
