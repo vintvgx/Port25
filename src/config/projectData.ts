@@ -5,6 +5,7 @@ import { ProjectConfig } from "@/types/Project";
 export const projects: ProjectConfig[] = [
   {
     id: 'urbanv3',
+    version: '3.0.0',
     title: 'Urban AI',
     description: 'An innovative web application',
     backgroundColor: 'bg-black',
@@ -16,7 +17,8 @@ export const projects: ProjectConfig[] = [
     }
   },
   {
-    id: 'collections',
+    id: 'collectionsv2',
+    //todo update version of collectionsv2 to 2.0.6 in project 
     version: '1.0.6',
     title: 'COLLECTIONS',
     description: 'A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by prioritizing user content and experience. ',
@@ -25,6 +27,20 @@ export const projects: ProjectConfig[] = [
     contentVideo: `/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/Collections.mp4')}`,
     links: {
       live: 'https://project2.com'
+    }
+  },
+  {
+    id: 'scoutv1',
+    //todo update version of scout
+    version: '1.3.8',
+    title: 'SCOUT',
+    description: 'SCOUT is a React Native application designed to track issues and errors for your projects using the Sentry API. This app provides real-time error tracking through notifications and integrates with ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.',
+    backgroundColor: 'bg-purple-500',
+    technologies: ['React Native', 'Typescript', 'Expo', 'Redux Toolkit', 'Firebase', 'Sentry API', 'ipGeolocation'],
+    contentVideo: `/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.legacy/2.0.0/URBAN_LEGACY_1.mp4')}`,
+    links: {
+      github: 'https://github.com/username/project3',
+      demo: 'https://demo.project3.com'
     }
   },
   {
@@ -39,5 +55,18 @@ export const projects: ProjectConfig[] = [
       github: 'https://github.com/username/project3',
       demo: 'https://demo.project3.com'
     }
-  }
+  },
+  {
+    id: 'collectionsv1',
+    //todo update version of collectionsv1 
+    version: '1.0.2',
+    title: 'COLLECTIONS',
+    description: 'A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by prioritizing user content and experience. ',
+    backgroundColor: 'bg-green-500',
+    technologies: ['React Native', 'Redux Toolkit', 'Firebase'],
+    contentVideo: `/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/Collections.mp4')}`,
+    links: {
+      live: 'https://project2.com'
+    }
+  },
 ]; 
