@@ -3,6 +3,7 @@ import { Asset } from "next-video/dist/assets.js";
 export interface ProjectConfig {
     id: string;
     title: string;
+    version?: string;
     description: string;
     backgroundColor?: string;
     technologies?: string[];
