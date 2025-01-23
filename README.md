@@ -1,7 +1,7 @@
 #TODO UPDAT PROJECT CARDS
 #TODO STYLE COMPONENTS
 # TODO
-
+_ add losding screen (allow videos to ge fetched from S3)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
