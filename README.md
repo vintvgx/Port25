@@ -5,7 +5,7 @@ _ add losding screen (allow videos to ge fetched from S3)
 - colors!
 - load videos
 - back ground color & update viceos to have no background
-
+-DO NOWWWWW
 
 This is a [Next.J's](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
