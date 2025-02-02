@@ -54,7 +54,7 @@ export const projects: ProjectConfig[] = [
     links: {
       github: 'https://github.com/username/project3',
       demo: 'https://demo.project3.com'
-    }
+  }
   },
   {
     id: 'collectionsv1',
