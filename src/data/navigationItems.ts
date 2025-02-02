@@ -15,8 +15,8 @@ export const navigationItems: NavItem[] = [
             description: "An innovative web application",
             technologies: ["React", "TypeScript", "Tailwind"],
             content: {
-              type: "text",
-              text: "Detailed case studies of our most impactful projects...",
+              type: "video",
+              src: `/api/video?url=${encodeURIComponent("https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.v3/3.0.0/URBAN-2.mp4")}`,
             },
             links: {
               demo: "https://demo.project1.com",
@@ -37,9 +37,9 @@ export const navigationItems: NavItem[] = [
               "Docker",
             ],
             content: {
-              type: "text",
-              text: "Detailed case studies of our most impactful projects...",
-            },
+                type: "video",
+                src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.legacy/2.0.0/URBAN_LEGACY_1.mp4')}`,
+              },
             links: {
               demo: "https://demo.project1.com",
               github: "https://github.com/username/project1",
@@ -55,10 +55,6 @@ export const navigationItems: NavItem[] = [
         description:
           "A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by prioritizing user content and experience. ",
         name: "Collections v2",
-        content: {
-          type: "image",
-          src: "/images/playground.jpg",
-        },
         versions: {
           "2.0.6": {
             title: "COLLECTIONS v2",
@@ -74,9 +70,9 @@ export const navigationItems: NavItem[] = [
               "AWS ( S3 / Cloudfront / Elastic Beanstalk)",
             ],
             content: {
-              type: "image",
-              src: "/images/playground.jpg",
-            },
+                type: "video",
+                src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/Collections.mp4')}`,
+              },
           },
         },
       },
@@ -107,8 +103,8 @@ export const navigationItems: NavItem[] = [
               "ipGeolocation",
             ],
             content: {
-              type: "text",
-              text: "Collection of insights and learnings...",
+              type: "video",
+              text: "TODO", //TODO find video for SCOUT (use from LinkedIN)
             },
           },
         },
