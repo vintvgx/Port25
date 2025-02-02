@@ -3,7 +3,7 @@ export interface ProjectVersion {
   description: string;
   technologies: string[];
   content: {
-    type: 'text' | 'image';
+    type: 'text' | 'image' | 'video';
     text?: string;
     src?: string;
   };

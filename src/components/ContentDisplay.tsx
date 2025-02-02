@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Project, ProjectVersion, CareerItem, InfoItem } from '@/types/content';
 import { Badge } from './ui/badge';
+import ReactPlayer from 'react-player';
+import BaseReactPlayer from 'react-player/base';
+import { Skeleton } from './ui/skeleton';
+import { Button } from "./ui/button";
+import { Github, Globe } from "lucide-react";
 
 interface ContentDisplayProps {
   content: Project | CareerItem | InfoItem;
@@ -16,7 +21,7 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({ content, category }) =>
 
   switch (category) {
     case 'project':
-      return renderProjectContent(content as Project);
+      return RenderProjectContent(content as Project);
     case 'career':
       return renderCareerContent(content as CareerItem);
     case 'info':
@@ -26,13 +31,11 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({ content, category }) =>
   }
 };
 
-const renderProjectContent = (project: Project) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const RenderProjectContent = (project: Project) => {
   const [selectedVersion, setSelectedVersion] = useState<string | undefined>(
     project?.currentVersion
   );
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     setSelectedVersion(project?.currentVersion);
   }, [project]);
@@ -40,16 +43,51 @@ const renderProjectContent = (project: Project) => {
   const versionInfo = selectedVersion && project?.versions[selectedVersion];
   const hasMultipleVersions = Object.keys(project.versions).length > 1;
 
-  const renderContent = (content: ProjectVersion) => {
+  const RenderProject = (content: ProjectVersion) => {
+
+  const [isVideoReady, setIsVideoReady] = useState(false);
+    const videoWidth = 640;  // Standard 16:9 video dimensions
+    const videoHeight = 360;
+
+    const handleVideoReady = () => {
+        setIsVideoReady(true);
+      };
+
     return (
       <div className="space-y-6 text-white">
-        <h2 className="text-3xl font-bold">{content.title}</h2>
-        <p className="text-lg text-gray-300">{content.description}</p>
+        {/* Title */}
+        {/* <h2 className="text-3xl font-bold">{content.title}</h2> */}
+        
+        <div className="w-full">
+        <div className="max-w-[640px] relative">
+          {!isVideoReady && (
+            <Skeleton 
+              className="absolute top-0 left-0 h-[360px] w-[640px] rounded-xl" 
+            />
+          )}
+          <ReactPlayer
+            url={content?.content?.src}
+            width={videoWidth}
+            height={videoHeight}
+            controls={false}
+            playing={true}
+            muted={true}
+            onReady={handleVideoReady}
+            style={{
+              visibility: isVideoReady ? 'visible' : 'hidden'
+            }}
+          />
+        </div>
+      </div>
+
+      <h2 className="text-xl font-bold">{content.title}</h2>
+        <p className="text-sm text-gray-300">{content.description}</p>
+
 
         {content.technologies && (
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold">Technologies</h3>
-            <div className="flex flex-wrap gap-2">
+            {/* <h3 className="text-lg font-semibold">Technologies</h3> */}
+            <div className="flex flex-wrap gap-2 justify-center ">
               {content.technologies.map((tech) => (
                 <Badge key={tech} variant="secondary">
                   {tech}
@@ -58,46 +96,43 @@ const renderProjectContent = (project: Project) => {
             </div>
           </div>
         )}
-
-        {content.content && (
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold">Content</h3>
-            {content.content.type === 'text' && content.content.text && (
-              <p className="text-gray-300">{content.content.text}</p>
-            )}
-            {content.content.type === 'image' && content.content.src && (
-              <img 
-                src={content.content.src} 
-                alt={content.title}
-                className="max-w-full rounded-lg"
-              />
-            )}
-          </div>
-        )}
-
         {content.links && (
           <div className="space-y-2">
             <h3 className="text-xl font-semibold">Links</h3>
             <div className="flex gap-4">
               {content.links.demo && (
-                <a 
-                  href={content.links.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
                   className="text-blue-400 hover:text-blue-300"
                 >
-                  Demo
-                </a>
+                  <a 
+                    href={content.links.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Globe className="mr-2 h-4 w-4" />
+                    Website
+                  </a>
+                </Button>
               )}
               {content.links.github && (
-                <a 
-                  href={content.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
                   className="text-blue-400 hover:text-blue-300"
                 >
-                  GitHub
-                </a>
+                  <a 
+                    href={content.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    GitHub
+                  </a>
+                </Button>
               )}
             </div>
           </div>
@@ -123,7 +158,7 @@ const renderProjectContent = (project: Project) => {
           </select>
         </div>
       )}
-      {versionInfo && renderContent(versionInfo)}
+      {versionInfo && RenderProject(versionInfo)}
     </div>
   );
 };

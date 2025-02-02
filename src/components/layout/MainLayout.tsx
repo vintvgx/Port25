@@ -29,7 +29,7 @@ export function MainLayout() {
           </div>
           
           {/* Right side content */}
-          <div className="w-full md:w-1/2 p-8 flex mt-32 justify-center">
+          <div className="w-full md:w-1/2 p-8 flex  justify-center">
             {selectedContent && (
               <ContentDisplay 
                 key={selectedContent.name}
