@@ -23,11 +23,11 @@ export function TextNavigation({ onItemSelect }: TextNavigationProps) {
     <nav className="relative text-gray-400">
       {navigationItems.map((section) => (
         <div key={section.category} className="mb-8">
-          <h2 className="text-sm mb-2 opacity-50">{section.category}</h2>
+          <h2 className="text-md mb-2 opacity-40">{section.category}</h2>
           {section.items.map((item) => (
-            <div key={item.name} className="relative">
+            <div key={item.name} className="relative mt-1">
               <button
-                className={`text-lg hover:text-white transition-colors ${
+                className={`text-xl hover:text-white transition-colors ${
                   selectedItem === item.name ? "text-white" : ""
                 }`}
                 onMouseEnter={() => setActiveItem(item.name)}
