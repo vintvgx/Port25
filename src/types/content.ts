@@ -1,22 +1,53 @@
-export interface NavItem {
-  category: string;
-  items: {
-    id?: string;
-    title?: string;
-    version?: string;
-    name?: string;
-    description?: string;
-    technologies?: string[];
-    date?: Date | undefined;
-    content?: {
-      type: 'image' | 'video' | 'text';
-      src?: string;
-      text?: string;
-    };
-    links?: {
-        demo?: string;
-        github?: string;
-        live?: string;
-      };
-  }[];
+export interface ProjectVersion {
+  title: string;
+  description: string;
+  technologies: string[];
+  content: {
+    type: 'text' | 'image';
+    text?: string;
+    src?: string;
+  };
+  links?: {
+    demo?: string;
+    github?: string;
+  };
 }
+
+export interface Project {
+  id: string;
+  name: string;
+  currentVersion?: string;
+  category: string;
+  versions: {
+    [version: string]: ProjectVersion;
+  };
+}
+
+export interface CareerItem {
+  name: string;
+  description: string;
+  category: string;
+  content: {
+    type: 'text' | 'image';
+    text?: string;
+    src?: string;
+  };
+}
+
+export interface InfoItem {
+  name: string;
+  description: string;
+  category: string;
+  content: {
+    type: 'text' | 'image';
+    text?: string;
+    src?: string;
+  };
+}
+
+export interface NavItem {
+  category: 'PROJECTS' | 'CAREER' | 'INFO';
+  items: (Project | CareerItem | InfoItem)[];
+}
+
+// Add other necessary types...

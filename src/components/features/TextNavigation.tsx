@@ -3,18 +3,20 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { navigationItems } from "@/data/navigationItems"
+import { CareerItem, InfoItem, Project } from "@/types/content";
 
 interface TextNavigationProps {
-  onItemSelect: (content: any) => void;
+  onItemSelect: (content: Project | CareerItem | InfoItem | null) => void;
 }
 
 export function TextNavigation({ onItemSelect }: TextNavigationProps) {
   const [activeItem, setActiveItem] = useState<string | null>(null)
   const [selectedItem, setSelectedItem] = useState<string | null>(null)
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleItemClick = (item: any) => {
     setSelectedItem(item.name);
-    onItemSelect(item.content);
+    onItemSelect(item);
   };
 
   return (
@@ -40,7 +42,7 @@ export function TextNavigation({ onItemSelect }: TextNavigationProps) {
                   animate={{ opacity: 1, x: 0 }}
                   className="absolute left-full ml-4 top-0 bg-gray-900 text-white text-sm px-4 py-2 rounded whitespace-nowrap"
                 >
-                  {item.description}
+                  {'description' in item ? item.description : ''}
                 </motion.div>
               )}
             </div>
