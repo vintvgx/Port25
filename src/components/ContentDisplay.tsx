@@ -5,7 +5,8 @@ import ReactPlayer from 'react-player';
 import BaseReactPlayer from 'react-player/base';
 import { Skeleton } from './ui/skeleton';
 import { Button } from "./ui/button";
-import { Github, Globe } from "lucide-react";
+import { Github, Globe, Maximize2, Minimize2, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ContentDisplayProps {
   content: Project | CareerItem | InfoItem;
@@ -44,49 +45,85 @@ const RenderProjectContent = (project: Project) => {
   const hasMultipleVersions = Object.keys(project.versions).length > 1;
 
   const RenderProject = (content: ProjectVersion) => {
-
-  const [isVideoReady, setIsVideoReady] = useState(false);
-    const videoWidth = 640;  // Standard 16:9 video dimensions
+    const [isVideoReady, setIsVideoReady] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const videoWidth = 640;
     const videoHeight = 360;
 
     const handleVideoReady = () => {
-        setIsVideoReady(true);
-      };
+      setIsVideoReady(true);
+    };
+
+    const toggleFullscreen = () => {
+      setIsFullscreen(!isFullscreen);
+    };
 
     return (
       <div className="space-y-6 text-white">
-        {/* Title */}
-        {/* <h2 className="text-3xl font-bold">{content.title}</h2> */}
-        
-        <div className="w-full">
-        <div className="max-w-[640px] relative">
-          {!isVideoReady && (
-            <Skeleton 
-              className="absolute top-0 left-0 h-[360px] w-[640px] rounded-xl" 
-            />
+        <AnimatePresence>
+          {isFullscreen ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+            >
+              <Button
+                variant="outline"
+                size="icon"
+                className="absolute top-4 right-4 z-50 bg-black/50 hover:bg-black/70"
+                onClick={toggleFullscreen}
+              >
+                <X className="h-4 w-4 text-white" />
+              </Button>
+              <ReactPlayer
+                url={content?.content?.src}
+                width="100%"
+                height="100%"
+                controls={true}
+                playing={true}
+                muted={true}
+                style={{ objectFit: 'contain' }}
+              />
+            </motion.div>
+          ) : (
+            <div className="w-full">
+              <div className="max-w-[640px] relative group">
+                {!isVideoReady && (
+                  <Skeleton 
+                    className="absolute top-0 left-0 h-[360px] w-[640px] rounded-xl" 
+                  />
+                )}
+                <ReactPlayer
+                  url={content?.content?.src}
+                  width={videoWidth}
+                  height={videoHeight}
+                  controls={false}
+                  playing={true}
+                  muted={true}
+                  onReady={handleVideoReady}
+                  style={{
+                    visibility: isVideoReady ? 'visible' : 'hidden'
+                  }}
+                />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 hover:bg-black/70"
+                  onClick={toggleFullscreen}
+                >
+                  <Maximize2 className="h-4 w-4 text-white" />
+                </Button>
+              </div>
+            </div>
           )}
-          <ReactPlayer
-            url={content?.content?.src}
-            width={videoWidth}
-            height={videoHeight}
-            controls={false}
-            playing={true}
-            muted={true}
-            onReady={handleVideoReady}
-            style={{
-              visibility: isVideoReady ? 'visible' : 'hidden'
-            }}
-          />
-        </div>
-      </div>
+        </AnimatePresence>
 
-      <h2 className="text-xl font-bold">{content.title}</h2>
+        <h2 className="text-xl font-bold">{content.title}</h2>
         <p className="text-sm text-gray-300">{content.description}</p>
-
 
         {content.technologies && (
           <div className="space-y-2">
-            {/* <h3 className="text-lg font-semibold">Technologies</h3> */}
             <div className="flex flex-wrap gap-2 justify-center ">
               {content.technologies.map((tech) => (
                 <Badge key={tech} variant="secondary">
