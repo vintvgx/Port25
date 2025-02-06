@@ -3,6 +3,7 @@ This is a [Next.J's](https://nextjs.org) project bootstrapped with [`create-next
 
 ## Getting Started
 
+2/5
 
 
 First, run the development server:
