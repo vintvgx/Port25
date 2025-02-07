@@ -4,7 +4,7 @@ This is a [Next.J's](https://nextjs.org) project bootstrapped with [`create-next
 ## Getting Started
 
 2/5
-
+2/6 - updating PROJECT!
 
 First, run the development server:
 
