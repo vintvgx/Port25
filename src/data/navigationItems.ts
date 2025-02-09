@@ -77,6 +77,23 @@ export const navigationItems: NavItem[] = [
                 github: "https://github.com/vintvgx"
             }
           },
+          "1.0.0": {
+            title: "COLLECTIONS",
+            description:
+              "A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by prioritizing user content and experience. ",
+            technologies: [
+              "React Native",
+              "Typescript",
+              "Firebase"
+            ],
+            content: {
+                type: "video",
+                src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.0/1Collections.mp4')}`,
+              },
+            links: {
+                github: "https://github.com/vintvgx"
+            }
+          },
         },
       },
       {
@@ -107,7 +124,7 @@ export const navigationItems: NavItem[] = [
             ],
             content: {
               type: "video",
-              text: "TODO", //TODO find video for SCOUT (use from LinkedIN)
+              src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/SCOUT/1.3.8/SCOUT.mp4')}`,
             },
             links: {
                 github: 'https://github.com/vintvgx/SCOUT',
