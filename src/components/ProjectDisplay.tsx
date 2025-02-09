@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { ChevronLeft, ChevronRight, Github, Globe } from 'lucide-react';
+import { useGesture } from '@use-gesture/react';
 
 interface ProjectDisplayProps {
   project: Project;
@@ -12,11 +13,48 @@ interface ProjectDisplayProps {
 }
 
 export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps) {
+  // Add gesture handling
+  const bind = useGesture({
+    // Handle both scroll and swipe
+    onDrag: ({ direction: [x], velocity, cancel }) => {
+      // Only trigger if the gesture is primarily horizontal and has enough velocity
+      if (Math.abs(velocity) > 0.2) {
+        if (x < 0) onNext();
+        if (x > 0) onPrev();
+        cancel(); // Prevent further gesture processing
+      }
+    },
+    // Handle mouse wheel/trackpad horizontal scroll
+    onWheel: ({ direction: [x], velocity, event }) => {
+      // Prevent vertical scrolling
+      event.preventDefault();
+      
+      // Only trigger if the gesture is primarily horizontal and has enough velocity
+      if (Math.abs(velocity) > 1) {
+        if (x < 0) onNext();
+        if (x > 0) onPrev();
+      }
+    },
+  }, {
+    // Configure gesture options
+    drag: {
+      threshold: 50, // Minimum distance before gesture is activated
+      filterTaps: true,
+      rubberband: true,
+    },
+    wheel: {
+      axis: 'x', // Only track horizontal scrolling
+    }
+  });
+
   const currentVersion = project.versions[project.currentVersion || ''];
   if (!currentVersion) return null;
 
   return (
-    <div className="relative w-full h-full">
+    <div 
+      className="relative w-full h-full touch-pan-y"
+      {...bind()}
+    >
       {/* Video Background */}
       <div className="absolute inset-0">
         <ReactPlayer
@@ -66,7 +104,7 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
            {/* Technologies */}
            <div className="flex flex-wrap gap-2">
               {currentVersion.technologies.map((tech) => (
-                <Badge key={tech} variant="secondary">
+                <Badge key={tech} >
                   {tech}
                 </Badge>
               ))}
