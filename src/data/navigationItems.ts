@@ -22,6 +22,7 @@ export const navigationItems: NavItem[] = [
               demo: "https://urbanai.info",
               github: "https://github.com/vintvgx/URBAN.ai.njs",
             },
+            date: "12/2024"
           },
           "2.0.0": {
             title: "Urban AI v2",
@@ -44,6 +45,7 @@ export const navigationItems: NavItem[] = [
               demo: "https://urbanai.info",
               github: "https://github.com/vintvgx/Urban.ai",
             },
+            date: "09/2022"
           },
         },
       },
@@ -75,7 +77,8 @@ export const navigationItems: NavItem[] = [
               },
             links: {
                 github: "https://github.com/vintvgx"
-            }
+            },
+            date: "08/2024"
           },
           "1.0.0": {
             title: "COLLECTIONS",
@@ -92,7 +95,8 @@ export const navigationItems: NavItem[] = [
               },
             links: {
                 github: "https://github.com/vintvgx"
-            }
+            },
+            date: '02/2023'
           },
         },
       },
@@ -128,7 +132,8 @@ export const navigationItems: NavItem[] = [
             },
             links: {
                 github: 'https://github.com/vintvgx/SCOUT',
-            }
+            },
+            date: "03/2024"
           },
         },
       },
