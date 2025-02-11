@@ -68,6 +68,7 @@ export function MainLayout() {
         </div>
       </Background>
 
+        {/* TODO fix timeline (place navigation indicators + version selector correctly ) */}
       {/* <ProjectTimeline
         projects={projects}
         currentProjectIndex={currentProjectIndex}
