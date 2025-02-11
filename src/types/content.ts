@@ -11,6 +11,7 @@ export interface ProjectVersion {
     demo?: string;
     github?: string;
   };
+  date: string;
 }
 
 export interface Project {

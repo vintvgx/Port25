@@ -5,6 +5,7 @@ import { navigationItems } from '@/data/navigationItems';
 import { AnimatePresence } from 'framer-motion';
 import { ProjectDisplay } from '../ProjectDisplay';
 import { Button } from '../ui/button';
+import { ProjectTimeline } from '../ProjectTimeline';
 
 export function MainLayout() {
   const projects = navigationItems.find((item) => item.category === "PROJECTS")?.items as Project[];
@@ -66,6 +67,15 @@ export function MainLayout() {
           ))}
         </div>
       </Background>
+
+        {/* TODO fix timeline (place navigation indicators + version selector correctly ) */}
+      {/* <ProjectTimeline
+        projects={projects}
+        currentProjectIndex={currentProjectIndex}
+        currentVersion={currentVersion}
+        onProjectSelect={setCurrentProjectIndex}
+        onVersionSelect={setCurrentVersion}
+      /> */}
 
       {/* Version Selector */}
       {versions.length > 1 && (
