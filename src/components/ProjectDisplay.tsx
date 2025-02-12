@@ -52,11 +52,11 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
 
   return (
     <div 
-      className="relative w-full h-full touch-pan-y"
+      className="relative w-full h-full touch-pan-y bg-white"
       {...bind()}
     >
       {/* Video Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 ">
         <ReactPlayer
           url={currentVersion.content.src}
           playing={true}
@@ -65,22 +65,22 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
           width="100%"
           height="100%"
           style={{ position: "absolute", top: 0, left: 0 }}
-          config={{
-            file: {
-              attributes: {
-                style: {
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                },
-              },
-            },
-          }}
+          // config={{
+          //   file: {
+          //     attributes: {
+          //       style: {
+          //         width: "50%",
+          //         height: "100%",
+          //         objectFit: "cover",
+          //       },
+          //     },
+          //   },
+          // }}
         />
       </div>
 
       {/* Content Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/30" />
 
       {/* Project Details */}
       <div className="absolute bottom-0 left-0 right-0 p-12">
