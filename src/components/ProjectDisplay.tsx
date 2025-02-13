@@ -56,6 +56,7 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
       {...bind()}
     >
       {/* Video Background */}
+      {/* TODO update videos */}
       <div className="absolute inset-0 ">
         <ReactPlayer
           url={currentVersion.content.src}
