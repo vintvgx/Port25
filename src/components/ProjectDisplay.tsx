@@ -5,6 +5,7 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { ChevronLeft, ChevronRight, Github, Globe } from 'lucide-react';
 import { useGesture } from '@use-gesture/react';
+import Link from 'next/link'
 
 interface ProjectDisplayProps {
   project: Project;
@@ -102,51 +103,64 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
               </span>
             ))}
           </div> */}
-           {/* Technologies */}
-           <div className="flex flex-wrap gap-2">
+
+            {/* Technology Stack */}
+            <div className="flex flex-wrap gap-2">
               {currentVersion.technologies.map((tech) => (
-                <Badge key={tech} >
+                 <Badge key={tech} variant="secondary" className="rounded-full px-4 py-1">
+                 {tech}
+               </Badge>
+                // <Badge key={tech} >
+                //   {tech}
+                // </Badge>
+              ))}
+            </div>
+          {/* <div className="flex flex-wrap gap-2">
+              {["React Native", "TypeScript", "Firebase"].map((tech) => (
+                <Badge key={tech} variant="secondary" className="rounded-full px-4 py-1">
                   {tech}
                 </Badge>
               ))}
-            </div>
+            </div> */}
 
           {/* Links */}
           {currentVersion.links && (
               <div className="flex gap-4">
                 {currentVersion.links.demo && (
-                  <Button variant="outline" size="sm" asChild>
-                    <a 
+            <Button variant="outline" className="rounded-full" asChild>
+                    <Link 
                       href={currentVersion.links.demo}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center"
                     >
-                      <Globe className="mr-2 h-4 w-4" />
+                      <Globe className="h-4 w-4" />
                       Demo
-                    </a>
+                    </Link>
                   </Button>
                 )}
                 {currentVersion.links.github && (
-                  <Button variant="outline" size="sm" asChild>
-                    <a 
+            <Button variant="outline" className="rounded-full" asChild>
+                    <Link 
                       href={currentVersion.links.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center"
                     >
-                      <Github className="mr-2 h-4 w-4" />
-                      GitHub
-                    </a>
+                <Github className="h-4 w-4" />
+                View on GitHub
+                    </Link>
                   </Button>
                 )}
               </div>
             )}
+            
         </motion.div>
       </div>
 
+      {/*TODO DELETE Deprecated  */}
       {/* Navigation Buttons */}
-      <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+      {/* <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
         <Button onClick={onPrev} className="bg-white/10 hover:bg-white/20">
           Prev
         </Button>
@@ -155,7 +169,7 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
         <Button onClick={onNext} className="bg-white/10 hover:bg-white/20">
           Next
         </Button>
-      </div>
+      </div> */}
     </div>
   )
 }
