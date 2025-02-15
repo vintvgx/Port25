@@ -9,6 +9,9 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
 
+/**
+ * Handles displaying all components and functionality states
+ */
 export function MainLayout() {
   const projects = navigationItems.find((item) => item.category === "PROJECTS")
     ?.items as Project[];
@@ -39,41 +42,45 @@ export function MainLayout() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-20 p-6 flex justify-between items-center ">
+      <header className="fixed top-0 left-0 right-0 z-20 p-6 flex justify-between items-center mx-6">
+        
+        <div className="flex items-center gap-10">
         <h1 className="text-2xl font-light tracking-tight text-black hover:opacity-70 transition-opacity">
-          Kareem Saygbe
-        </h1>
-        <nav className="flex items-center gap-8">
-          <button className="text-sm text-gray-600 hover:text-gray-900 transition-opacity">
-            Projects
-          </button>
-          <button className="text-sm text-gray-600 hover:text-gray-900 transition-opacity">
-            About
-          </button>
-          <button className="text-sm text-gray-600 hover:text-gray-900 transition-opacity">
-            Contact
-          </button>
-          <div className="flex items-center gap-4 ">
-            <Link
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-opacity"
-            >
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
-            </Link>
-            <Link
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-opacity"
-            >
-              <Linkedin className="h-5 w-5" />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-          </div>
-        </nav>
+            Kareem Saygbe
+          </h1>
+          <nav className="flex items-center gap-8 content-center ">
+            <button className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+              Projects
+            </button>
+            <button className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+              About
+            </button>
+            <button className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+              Contact
+            </button>
+          </nav>
+        </div>
+
+        <div className="flex items-center gap-4 ml-auto">
+          <Link
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <Github className="h-5 w-5" />
+            <span className="sr-only">GitHub</span>
+          </Link>
+          <Link
+            href="https://linkedin.com/in/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <Linkedin className="h-5 w-5" />
+            <span className="sr-only">LinkedIn</span>
+          </Link>
+        </div>
       </header>
 
       {/* Project Display */}
@@ -92,7 +99,7 @@ export function MainLayout() {
       </Background>
 
       {/* Bottom Navigation Container */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center">
+      <div className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center mx-6">
         {/* Empty div for flex spacing */}
 
         <div className="flex item-center text-gray-500">
@@ -100,6 +107,7 @@ export function MainLayout() {
         </div>
 
         {/* Project Navigation - Centered */}
+        {/* TODO Center this */}
         <div className="flex items-center gap-4 text-sm text-gray-500">
           <Button
             variant="ghost"
@@ -125,8 +133,7 @@ export function MainLayout() {
         </div>
 
         {/* Version Selector - Right */}
-        {/* {versions.length > 1 ? ( */}
-        <div className="flex items-center gap-2 mr-10">
+        <div className="flex items-center gap-2">
           {" "}
           {/* Adjust width to match left spacing */}
           {/* <span className="text-black text-sm">Version</span> */}
