@@ -1,9 +1,9 @@
 import { Project } from '@/types/content';
 import ReactPlayer from 'react-player';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { ChevronLeft, ChevronRight, Github, Globe } from 'lucide-react';
+import { Github, Globe } from 'lucide-react';
 import { useGesture } from '@use-gesture/react';
 import Link from 'next/link'
 
@@ -12,6 +12,7 @@ interface ProjectDisplayProps {
   onNext: () => void;
   onPrev: () => void;
 }
+
 
 export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps) {
   // Add gesture handling
@@ -82,6 +83,7 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
       </div>
 
       {/* Content Overlay */}
+      {/* TODO Update to black background and layer video on top | test with using bg-black/90 */}
       <div className="absolute inset-0 bg-black/30" />
 
       {/* Project Details */}
@@ -92,84 +94,77 @@ export function ProjectDisplay({ project, onNext, onPrev }: ProjectDisplayProps)
           exit={{ opacity: 0, y: 20 }}
           className="space-y-6"
         >
-          <h2 className="text-4xl font-light text-white">{currentVersion.title}</h2>
+          <h2 className="text-5xl font-bold tracking-tight text-white">{currentVersion.title}</h2>
           <p className="text-gray-200 text-lg max-w-2xl">{currentVersion.description}</p>
 
-          {/* Technologies */}
-          {/* <div className="flex flex-wrap gap-2">
-            {currentVersion.technologies.map((tech) => (
-              <span key={tech} className="text-gray-300">
-                {tech}
-              </span>
-            ))}
-          </div> */}
-
             {/* Technology Stack */}
-            <div className="flex flex-wrap gap-2">
-              {currentVersion.technologies.map((tech) => (
-                 <Badge key={tech} variant="secondary" className="rounded-full px-4 py-1">
-                 {tech}
-               </Badge>
-                // <Badge key={tech} >
-                //   {tech}
-                // </Badge>
-              ))}
+            <div className="space-y-2">
+              <span className="text-xs text-white/60 uppercase tracking-wider">Built with</span>
+              <div className="flex flex-wrap gap-2">
+                {currentVersion.technologies.map((tech) => (
+                  <Badge 
+                    key={tech} 
+                    variant="secondary" 
+                    className="rounded-full px-4 py-1 bg-black/40 text-white border-white/10 backdrop-blur-sm"
+                  >
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
             </div>
-          {/* <div className="flex flex-wrap gap-2">
-              {["React Native", "TypeScript", "Firebase"].map((tech) => (
-                <Badge key={tech} variant="secondary" className="rounded-full px-4 py-1">
-                  {tech}
-                </Badge>
-              ))}
-            </div> */}
 
           {/* Links */}
           {currentVersion.links && (
-              <div className="flex gap-4">
-                {currentVersion.links.demo && (
-            <Button variant="outline" className="rounded-full" asChild>
-                    <Link 
-                      href={currentVersion.links.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <Globe className="h-4 w-4" />
-                      Demo
-                    </Link>
-                  </Button>
-                )}
-                {currentVersion.links.github && (
-            <Button variant="outline" className="rounded-full" asChild>
-                    <Link 
-                      href={currentVersion.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                <Github className="h-4 w-4" />
-                View on GitHub
-                    </Link>
-                  </Button>
-                )}
-              </div>
-            )}
+            <div className="flex gap-4">
+              {currentVersion.links.demo && (
+                <Button 
+                  variant="outline" 
+                  className="rounded-full bg-white/30 backdrop-blur-sm border-white/50 text-black hover:bg-white/40" 
+                  asChild
+                >
+                  <Link 
+                    href={currentVersion.links.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Globe className="h-4 w-4" />
+                    Demo
+                  </Link>
+                </Button>
+              )}
+              {currentVersion.links.github && (
+                <Button 
+                  variant="outline" 
+                  className="rounded-full bg-white/30 backdrop-blur-sm border-white/50 text-black hover:bg-white/40" 
+                  asChild
+                >
+                  <Link 
+                    href={currentVersion.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <Github className="h-4 w-4" />
+                    View on GitHub
+                  </Link>
+                </Button>
+              )}
+            </div>
+          )}
             
         </motion.div>
+        <div className="absolute bottom-6 right-6">
+          <Button
+            variant="ghost"
+            size="sm"
+            disabled={true}
+            className="text-sm text-white/80 hover:text-white/100 transition-colors"
+          >
+            Version {project.currentVersion}
+          </Button>
+        </div>
       </div>
-
-      {/*TODO DELETE Deprecated  */}
-      {/* Navigation Buttons */}
-      {/* <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
-        <Button onClick={onPrev} className="bg-white/10 hover:bg-white/20">
-          Prev
-        </Button>
-      </div>
-      <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
-        <Button onClick={onNext} className="bg-white/10 hover:bg-white/20">
-          Next
-        </Button>
-      </div> */}
     </div>
   )
 }
