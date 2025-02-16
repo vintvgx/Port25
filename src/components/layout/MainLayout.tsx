@@ -8,16 +8,24 @@ import { Button } from "../ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
+import ProjectMenuDialog from "../NavMenu/ProjectMenu";
+
+// Add this type near the top of the file with other imports
+type DialogType = 'projects' | 'about' | 'contact' | null;
 
 /**
  * Handles displaying all components and functionality states
  */
 export function MainLayout() {
+  // Handles parsing information for projects to be used in components
   const projects = navigationItems.find((item) => item.category === "PROJECTS")
     ?.items as Project[];
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
   const [currentVersion, setCurrentVersion] = useState<string | undefined>();
   const currentProject = projects[currentProjectIndex];
+
+  // Replace the single isOpen state with a more flexible dialog state
+  const [activeDialog, setActiveDialog] = useState<DialogType>(null);
 
   // Set initial version when project changes
   useEffect(() => {
@@ -39,8 +47,36 @@ export function MainLayout() {
   // Get available versions for current project
   const versions = currentProject ? Object.keys(currentProject.versions) : [];
 
+  // Helper function to handle dialog state
+  const handleDialogOpen = (dialog: DialogType) => {
+    setActiveDialog(dialog);
+  };
+
+  const handleDialogClose = () => {
+    setActiveDialog(null);
+  };
+
+  // Add this handler after the other handlers
+  const handleProjectSelect = (index: number) => {
+    setCurrentProjectIndex(index);
+    handleDialogClose();
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Update ProjectMenuDialog to use new state management */}
+      <ProjectMenuDialog 
+        isOpen={activeDialog === 'projects'} 
+        onClose={handleDialogClose} 
+        projects={projects}
+        onProjectSelect={handleProjectSelect}
+      />
+      
+      {/* Add other dialog components */}
+      {/* TODO: Create and import AboutDialog and ContactDialog components */}
+      {/* <AboutDialog isOpen={activeDialog === 'about'} onClose={handleDialogClose} />
+      <ContactDialog isOpen={activeDialog === 'contact'} onClose={handleDialogClose} /> */}
+
       {/* Header Navigation */}
       <header className="fixed top-0 left-0 right-0 z-20 p-6 flex justify-between items-center mx-6">
         
@@ -49,15 +85,27 @@ export function MainLayout() {
             Kareem Saygbe
           </h1>
           <nav className="flex items-center gap-8 content-center ">
-            <button className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            <Button
+              variant="ghost"
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              onClick={() => handleDialogOpen('projects')}
+            >
               Projects
-            </button>
-            <button className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              onClick={() => handleDialogOpen('about')}
+            >
               About
-            </button>
-            <button className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              onClick={() => handleDialogOpen('contact')}
+            >
               Contact
-            </button>
+            </Button>
           </nav>
         </div>
 
