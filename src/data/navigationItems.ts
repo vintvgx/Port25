@@ -7,10 +7,10 @@ export const navigationItems: NavItem[] = [
       {
         id: "urban",
         name: "Urban AI",
-        currentVersion: "3.0.0",
+        currentVersion: "2.0.0",
         category: "project",
         versions: {
-          "3.0.0": {
+          "2.0.0": {
             title: "Urban AI v3",
             description: "An innovative web application",
             technologies: ["React", "TypeScript", "Tailwind"],
@@ -24,7 +24,7 @@ export const navigationItems: NavItem[] = [
             },
             date: "12/2024"
           },
-          "2.0.0": {
+          "1.0.0": {
             title: "Urban AI v2",
             description:
               "Welcome to Urban.ai, an innovative chatbot designed to bring you a unique conversational experience! Powered by ChatGPT-4 Turbo, our chatbot not only provides accurate and coherent responses but also incorporates phrases and slang from Urban Dictionary to keep the conversation lively and contemporary.",
