@@ -7,12 +7,12 @@ export const navigationItems: NavItem[] = [
       {
         id: "urban",
         name: "Urban AI",
-        currentVersion: "3.0.0",
+        currentVersion: "2.0.0",
         category: "project",
         versions: {
-          "3.0.0": {
-            title: "Urban AI v3",
-            description: "An innovative web application",
+          "2.0.0": {
+            title: "Urban AI",
+            description: "Urban.ai is a fun and interactive chatbot that bridges the gap between technology and street culture. Designed to engage users in a unique way, it responds to queries and conversations using the vibrant and dynamic language of urban slang.n",
             technologies: ["React", "TypeScript", "Tailwind"],
             content: {
               type: "video",
@@ -22,9 +22,10 @@ export const navigationItems: NavItem[] = [
               demo: "https://urbanai.info",
               github: "https://github.com/vintvgx/URBAN.ai.njs",
             },
-            date: "12/2024"
+            date: "12/2024",
+            isLatest: true
           },
-          "2.0.0": {
+          "1.0.0": {
             title: "Urban AI v2",
             description:
               "Welcome to Urban.ai, an innovative chatbot designed to bring you a unique conversational experience! Powered by ChatGPT-4 Turbo, our chatbot not only provides accurate and coherent responses but also incorporates phrases and slang from Urban Dictionary to keep the conversation lively and contemporary.",
@@ -78,7 +79,8 @@ export const navigationItems: NavItem[] = [
             links: {
                 github: "https://github.com/vintvgx"
             },
-            date: "08/2024"
+            date: "08/2024",
+            isLatest: true
           },
           "1.0.0": {
             title: "COLLECTIONS",
@@ -133,7 +135,8 @@ export const navigationItems: NavItem[] = [
             links: {
                 github: 'https://github.com/vintvgx/SCOUT',
             },
-            date: "03/2024"
+            date: "03/2024",
+            isLatest: true
           },
         },
       },
