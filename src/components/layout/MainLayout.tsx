@@ -57,8 +57,9 @@ export function MainLayout() {
   };
 
   // Add this handler after the other handlers
-  const handleProjectSelect = (index: number) => {
+  const handleProjectSelect = (index: number, version: string) => {
     setCurrentProjectIndex(index);
+    setCurrentVersion(version);
     handleDialogClose();
   };
 

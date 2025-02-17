@@ -4,7 +4,7 @@ export interface MenuDialog {
     isOpen: boolean;
     onClose: () => void;
     projects?: Project[];
-    onProjectSelect?: (index: number) => void;
+    onProjectSelect?: (index: number, version: string) => void;
     career?: CareerItem[];
     info?: InfoItem[];
 }

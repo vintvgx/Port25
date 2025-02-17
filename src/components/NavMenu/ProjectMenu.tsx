@@ -1,12 +1,12 @@
-"use client";
-
+import React from 'react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { MenuDialog } from "@/types/menu";
+import { ChevronRight } from "lucide-react";
+import { MenuDialog } from '@/types/menu';
 
 export default function ProjectMenuDialog({
   isOpen,
@@ -17,40 +17,42 @@ export default function ProjectMenuDialog({
 
   if (!projects) return null;
 
-  const handleProjectClick = (projectIndex: number) => {
-    onProjectSelect?.(projectIndex);
+  const handleProjectClick = (projectIndex: number, version: string) => {
+    onProjectSelect?.(projectIndex, version);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="max-w-2xl bg-white/90 backdrop-blur-lg">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-6">
+          <DialogTitle className="text-2xl font-medium tracking-tight text-gray-900">
             Projects
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-8">
+        <div className="mt-8 divide-y divide-gray-100">
           {projects?.map((project, index) => (
-            <div 
-              key={project.id} 
-              className="space-y-3 cursor-pointer hover:bg-muted/50 p-4 rounded-lg transition-colors"
-              onClick={() => handleProjectClick(index)}
-            >
-              <h3 className="text-xl font-semibold">{project.name}</h3>
-              <div className="space-y-2">
+            <div key={project.id} className="py-6 first:pt-0 last:pb-0">
+              <div className="px-4 py-2 text-lg font-medium text-gray-900">
+                {project.name}
+              </div>
+              
+              <div className="mt-2 space-y-px">
                 {Object.entries(project.versions).map(([version, details]) => (
                   <div
                     key={version}
-                    className="grid grid-cols-[1fr,auto,auto] gap-4 items-center py-2 px-3 rounded-lg hover:bg-muted transition-colors"
+                    onClick={() => handleProjectClick(index, version)}
+                    className="group flex items-center justify-between px-4 py-3 cursor-pointer transition-colors hover:bg-gray-100/80"
                   >
-                    <div className="font-medium">{details.title}</div>
-                    <div className="text-sm text-muted-foreground">
-                      version {version}
+                    <div className="flex items-center text-sm text-gray-500 space-x-3">
+                      <span>Version {version}</span>
+                      <span className="text-gray-400">•</span>
+                      <span>{details.date}</span>
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      {details.date}
-                    </div>
+                    
+                    <ChevronRight 
+                      className="w-5 h-5 text-gray-400 transition-transform duration-200 group-hover:translate-x-1" 
+                    />
                   </div>
                 ))}
               </div>
