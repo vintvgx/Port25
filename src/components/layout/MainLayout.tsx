@@ -5,13 +5,13 @@ import { navigationItems } from "@/data/navigationItems";
 import { AnimatePresence } from "framer-motion";
 import { ProjectDisplay } from "../ProjectDisplay";
 import { Button } from "../ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
 import ProjectMenuDialog from "../NavMenu/ProjectMenu";
 
 // Add this type near the top of the file with other imports
-type DialogType = 'projects' | 'about' | 'contact' | null;
+type DialogType = 'projects' | 'about' | 'contact' | 'menu' | null;
 
 /**
  * Handles displaying all components and functionality states
@@ -63,6 +63,114 @@ export function MainLayout() {
     handleDialogClose();
   };
 
+  const Header = () => (
+    <header className="fixed top-0 left-0 right-0 z-20 p-4 md:p-6 flex justify-between items-center mx-2 md:mx-6">
+      <div className="flex items-center gap-4 md:gap-10">
+        <h1 className="text-xl md:text-2xl font-light tracking-tight text-black hover:opacity-70 transition-opacity">
+          Kareem Saygbe
+        </h1>
+        <nav className="hidden md:flex items-center gap-8 content-center">
+          <Button
+            variant="ghost"
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            onClick={() => handleDialogOpen('projects')}
+          >
+            Projects
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            onClick={() => handleDialogOpen('about')}
+          >
+            About
+          </Button>
+          <Button
+            variant="ghost"
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+            onClick={() => handleDialogOpen('contact')}
+          >
+            Contact
+          </Button>
+        </nav>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={() => handleDialogOpen('menu')}>
+          <Menu className="h-5 w-5" />
+        </Button>
+      </div>
+      
+      <div className="flex items-center gap-4">
+        <Link
+          href="https://github.com/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900 transition-colors"
+        >
+          <Github className="h-5 w-5" />
+          <span className="sr-only">GitHub</span>
+        </Link>
+        <Link
+          href="https://linkedin.com/in/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-gray-900 transition-colors"
+        >
+          <Linkedin className="h-5 w-5" />
+          <span className="sr-only">LinkedIn</span>
+        </Link>
+      </div>
+    </header>
+  );
+
+  const BottomNav = () => (
+    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mx-2 md:mx-6 gap-4 bg-white/80 backdrop-blur-sm">
+      <div className="hidden md:block text-gray-500">
+        <h1 className="text-lg font-light">Full Stack Developer</h1>
+      </div>
+
+      <div className="flex items-center gap-4 text-sm text-gray-500 order-1 md:order-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="hover:bg-gray-100 rounded-full"
+          onClick={handlePrevProject}>
+          <ArrowLeft className="h-4 w-4" />
+          <span className="sr-only">Previous project</span>
+        </Button>
+        <span className="text-xs tracking-wider uppercase">
+          {`${String(currentProjectIndex + 1).padStart(2, "0")} / ${String(
+            projects.length
+          ).padStart(2, "0")}`}
+        </span>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="hover:bg-gray-100 rounded-full"
+          onClick={handleNextProject}>
+          <ArrowRight className="h-4 w-4" />
+          <span className="sr-only">Next project</span>
+        </Button>
+      </div>
+
+      <div className="flex items-center gap-2 w-full md:w-auto justify-end order-2 md:order-3">
+        <div className="flex gap-2">
+          {versions.map((version, index) => (
+            <Button
+              key={version}
+              variant={currentVersion === version ? "outline" : "ghost"}
+              size="icon"
+              onClick={() => setCurrentVersion(version)}
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors w-9 h-9">
+              {versions.length - index}
+            </Button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-white">
       {/* Update ProjectMenuDialog to use new state management */}
@@ -78,59 +186,7 @@ export function MainLayout() {
       {/* <AboutDialog isOpen={activeDialog === 'about'} onClose={handleDialogClose} />
       <ContactDialog isOpen={activeDialog === 'contact'} onClose={handleDialogClose} /> */}
 
-      {/* Header Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-20 p-6 flex justify-between items-center mx-6">
-        
-        <div className="flex items-center gap-10">
-        <h1 className="text-2xl font-light tracking-tight text-black hover:opacity-70 transition-opacity">
-            Kareem Saygbe
-          </h1>
-          <nav className="flex items-center gap-8 content-center ">
-            <Button
-              variant="ghost"
-              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-              onClick={() => handleDialogOpen('projects')}
-            >
-              Projects
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-              onClick={() => handleDialogOpen('about')}
-            >
-              About
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-              onClick={() => handleDialogOpen('contact')}
-            >
-              Contact
-            </Button>
-          </nav>
-        </div>
-
-        <div className="flex items-center gap-4 ml-auto">
-          <Link
-            href="https://github.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            <Github className="h-5 w-5" />
-            <span className="sr-only">GitHub</span>
-          </Link>
-          <Link
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            <Linkedin className="h-5 w-5" />
-            <span className="sr-only">LinkedIn</span>
-          </Link>
-        </div>
-      </header>
+      <Header />
 
       {/* Project Display */}
       <Background>
@@ -147,60 +203,7 @@ export function MainLayout() {
         </AnimatePresence>
       </Background>
 
-      {/* Bottom Navigation Container */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center mx-6">
-        {/* Empty div for flex spacing */}
-
-        <div className="flex item-center text-gray-500">
-          <h1 className="text-lg font-light">Full Stack Developer</h1>
-        </div>
-
-        {/* Project Navigation - Centered */}
-        {/* TODO Center this */}
-        <div className="flex items-center gap-4 text-sm text-gray-500">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hover:bg-gray-100 rounded-full"
-            onClick={handlePrevProject}>
-            <ArrowLeft className="h-4 w-4" />
-            <span className="sr-only">Previous project</span>
-          </Button>
-          <span className="text-xs tracking-wider uppercase">
-            {`${String(currentProjectIndex + 1).padStart(2, "0")} / ${String(
-              projects.length
-            ).padStart(2, "0")}`}
-          </span>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hover:bg-gray-100 rounded-full"
-            onClick={handleNextProject}>
-            <ArrowRight className="h-4 w-4" />
-            <span className="sr-only">Next project</span>
-          </Button>
-        </div>
-
-        {/* Version Selector - Right */}
-        <div className="flex items-center gap-2">
-          {" "}
-          {/* Adjust width to match left spacing */}
-          {/* <span className="text-black text-sm">Version</span> */}
-          <div className="flex gap-2">
-            {versions.map((version, index) => (
-              <Button
-                key={version}
-                variant={currentVersion === version ? "outline" : "ghost"}
-                size="icon"
-                onClick={() => setCurrentVersion(version)}
-                className="text-sm text-gray-500 hover:text-gray-900 transition-colors w-9 h-9">
-                {/* Ensures versions are displayed latest to earliest */}v
-                {versions.length - index}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </div>
+      <BottomNav />
     </div>
   );
 }
