@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Github, Globe } from "lucide-react";
+import {  Globe } from "lucide-react";
 import Link from "next/link";
 
 interface ProjectDisplayProps {
