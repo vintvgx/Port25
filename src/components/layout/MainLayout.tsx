@@ -5,13 +5,14 @@ import { navigationItems } from "@/data/navigationItems";
 import { AnimatePresence } from "framer-motion";
 import { ProjectDisplay } from "../ProjectDisplay";
 import { Button } from "../ui/button";
-import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
-import ProjectMenuDialog from "../NavMenu/ProjectMenu";
+import ProjectMenuDialog from "../Menus/ProjectMenu";
+import MobileMenu from "../Menus/MobileMenu";
 
 // Add this type near the top of the file with other imports
-type DialogType = 'projects' | 'about' | 'contact' | 'menu' | null;
+type DialogType = 'projects' | 'about' | 'contact' | null;
 
 /**
  * Handles displaying all components and functionality states
@@ -24,7 +25,7 @@ export function MainLayout() {
   const [currentVersion, setCurrentVersion] = useState<string | undefined>();
   const currentProject = projects[currentProjectIndex];
 
-  // Replace the single isOpen state with a more flexible dialog state
+  // State for desktop dialogs
   const [activeDialog, setActiveDialog] = useState<DialogType>(null);
 
   // Set initial version when project changes
@@ -56,7 +57,7 @@ export function MainLayout() {
     setActiveDialog(null);
   };
 
-  // Add this handler after the other handlers
+  // Project selection handler used by both mobile and desktop menus
   const handleProjectSelect = (index: number, version: string) => {
     setCurrentProjectIndex(index);
     setCurrentVersion(version);
@@ -92,13 +93,7 @@ export function MainLayout() {
             Contact
           </Button>
         </nav>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => handleDialogOpen('menu')}>
-          <Menu className="h-5 w-5" />
-        </Button>
+        <MobileMenu onProjectSelect={handleProjectSelect} />
       </div>
       
       <div className="flex items-center gap-4">
@@ -173,7 +168,7 @@ export function MainLayout() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Update ProjectMenuDialog to use new state management */}
+      {/* Desktop Project Menu Dialog */}
       <ProjectMenuDialog 
         isOpen={activeDialog === 'projects'} 
         onClose={handleDialogClose} 
@@ -181,7 +176,6 @@ export function MainLayout() {
         onProjectSelect={handleProjectSelect}
       />
       
-      {/* Add other dialog components */}
       {/* TODO: Create and import AboutDialog and ContactDialog components */}
       {/* <AboutDialog isOpen={activeDialog === 'about'} onClose={handleDialogClose} />
       <ContactDialog isOpen={activeDialog === 'contact'} onClose={handleDialogClose} /> */}
