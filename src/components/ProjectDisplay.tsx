@@ -16,8 +16,6 @@ interface ProjectDisplayProps {
 
 export function ProjectDisplay({
   project,
-  onNext,
-  onPrev,
 }: ProjectDisplayProps) {
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [showInfoDialog, setShowInfoDialog] = useState(false);
