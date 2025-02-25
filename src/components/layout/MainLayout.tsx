@@ -120,11 +120,14 @@ export function MainLayout() {
   );
 
   const BottomNav = () => (
-    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mx-2 md:mx-6 gap-4 bg-white/80 backdrop-blur-sm">
+    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mx-2 h-16 md:mx-6 gap-4 bg-white/80 backdrop-blur-sm">
+      
+      {/* Full Stack Dev Text  */}
       <div className="hidden md:block text-gray-500">
         <h1 className="text-lg font-light">Full Stack Developer</h1>
       </div>
 
+      {/* Prev and Next button  */}
       <div className="flex items-center gap-4 text-sm text-gray-500 order-1 md:order-2">
         <Button
           variant="ghost"
