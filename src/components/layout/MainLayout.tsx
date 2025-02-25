@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Github, Linkedin } from "lucide-react";
 import ProjectMenuDialog from "../Menus/ProjectMenu";
 import MobileMenu from "../Menus/MobileMenu";
+import { VersionSelector } from "../VersionSelector";
 
 // Add this type near the top of the file with other imports
 type DialogType = 'projects' | 'about' | 'contact' | null;
@@ -152,18 +153,25 @@ export function MainLayout() {
         </Button>
       </div>
 
+      {/* Version Selector  */}
       <div className="flex items-center gap-2 w-full md:w-auto justify-end order-2 md:order-3">
-        <div className="flex gap-2">
-          {versions.map((version, index) => (
-            <Button
-              key={version}
-              variant={currentVersion === version ? "outline" : "ghost"}
-              size="icon"
-              onClick={() => setCurrentVersion(version)}
-              className="text-sm text-gray-500 hover:text-gray-900 transition-colors w-9 h-9">
-              {versions.length - index}
-            </Button>
-          ))}
+        {versions.length > 0 && (
+          <div className="md:hidden w-full">
+            <VersionSelector
+              versions={versions}
+              currentVersion={currentVersion}
+              onVersionSelect={setCurrentVersion}
+              variant="mobile"
+            />
+          </div>
+        )}
+        <div className="hidden md:block">
+          <VersionSelector
+            versions={versions}
+            currentVersion={currentVersion}
+            onVersionSelect={setCurrentVersion}
+            variant="desktop"
+          />
         </div>
       </div>
     </div>
