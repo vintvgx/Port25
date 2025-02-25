@@ -195,9 +195,9 @@ export function MainLayout() {
 
       {/* Project Display */}
       <Background>
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="sync">
           <ProjectDisplay
-            key={currentProjectIndex}
+            key={`${currentProject.id}-${currentVersion}`}
             project={{
               ...currentProject,
               currentVersion: currentVersion || currentProject.currentVersion,
