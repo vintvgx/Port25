@@ -102,6 +102,34 @@ export function ProjectDisplay({
       {/* Content Overlay */}
       <div className="absolute inset-0 bg-black/80" />
 
+       {/* Project Details */}
+       {/* <AnimatePresence mode="wait">
+        <motion.div 
+          key={`${project.id}-${project.currentVersion}`}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+          className={`
+            absolute inset-0 
+            ${isInfoExpanded ? 'overflow-y-auto' : 'overflow-hidden'}
+          `}
+        >
+          <MobileDisplay 
+            currentVersion={currentVersion}
+            isInfoExpanded={isInfoExpanded}
+            toggleInfoPanel={toggleInfoPanel}
+            project={project}
+          />
+          
+          <DesktopDisplay 
+            currentVersion={currentVersion}
+            project={project}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </motion.div> */}
+
       {/* Project Details */}
       <AnimatePresence mode="wait">
         <motion.div 
@@ -116,7 +144,7 @@ export function ProjectDisplay({
           `}
         >
           {/* Mobile View: Header with Title and Info/Close button */}
-          <div className="sticky top-0 z-10 px-6 pt-6 pb-3 flex items-center justify-between bg-gradient-to-b from-black/90 to-black/70">
+          <div className="block md:hidden sticky top-0 z-10 px-6 pt-6 pb-3 flex items-center justify-between bg-gradient-to-b from-black/90 to-black/70">
             <h2 className="text-4xl font-bold tracking-tight text-white pr-3">
               {currentVersion.title}
             </h2>
