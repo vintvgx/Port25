@@ -68,7 +68,7 @@ export function MainLayout() {
   const Header = () => (
     <header className="fixed top-0 left-0 right-0 z-20 p-4 md:p-6 flex justify-between items-center mx-2 md:mx-6">
       <div className="flex items-center gap-4 md:gap-10">
-        <h1 className="text-xl md:text-2xl font-light tracking-tight text-black hover:opacity-70 transition-opacity">
+        <h1 className="text-xl md:text-2xl font-light tracking-tight text-gray-600 hover:text-gray-900 hover:opacity-70 transition-opacity">
           Kareem Saygbe
         </h1>
         <nav className="hidden md:flex items-center gap-8 content-center">
@@ -94,10 +94,9 @@ export function MainLayout() {
             Contact
           </Button>
         </nav>
-        <MobileMenu onProjectSelect={handleProjectSelect} />
       </div>
       
-      <div className="flex items-center gap-4">
+      <div className="hidden md:flex items-center gap-4">
         <Link
           href="https://github.com/yourusername"
           target="_blank"
@@ -117,11 +116,13 @@ export function MainLayout() {
           <span className="sr-only">LinkedIn</span>
         </Link>
       </div>
+      <MobileMenu onProjectSelect={handleProjectSelect} />
+
     </header>
   );
 
   const BottomNav = () => (
-    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mx-2 h-16 md:mx-6 gap-4 bg-white/80 backdrop-blur-sm">
+    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mx-2 h-16 md:mx-6 gap-4 backdrop-blur-sm">
       
       {/* Full Stack Dev Text  */}
       <div className="hidden md:block text-gray-500">
