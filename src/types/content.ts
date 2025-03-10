@@ -6,6 +6,7 @@ export interface ProjectVersion {
     type: 'text' | 'image' | 'video';
     text?: string;
     src?: string;
+    mobileSrc?: string;
   };
   links?: {
     demo?: string;

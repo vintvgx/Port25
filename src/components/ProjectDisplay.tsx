@@ -7,6 +7,8 @@ import { Globe, Info, X } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+//@coderabbitai generate unit testing code for this file.
+
 interface ProjectDisplayProps {
   project: Project;
   onNext: () => void;
@@ -19,15 +21,41 @@ export function ProjectDisplay({
   onPrev
 }: ProjectDisplayProps) {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
 
   const swipeConfidenceThreshold = 10000;
   const swipePower = (offset: number, velocity: number) => {
     return Math.abs(offset) * velocity;
   };
 
+    // Detect if the device is mobile based on viewport width
+    useEffect(() => {
+      const checkIsMobile = () => {
+        setIsMobile(window.innerWidth < 768); // 768px is the standard md breakpoint in Tailwind
+      };
+      
+      // Initial check
+      checkIsMobile();
+      
+      // Add event listener for window resize
+      window.addEventListener('resize', checkIsMobile);
+      
+      // Cleanup
+      return () => window.removeEventListener('resize', checkIsMobile);
+    }, []);
+
+
   const currentVersion = project.versions[project.currentVersion || ""];
   if (!currentVersion) return null;
+
+    // Determine video source based on device
+    const videoSource = isMobile && currentVersion.content.mobileSrc 
+    ? currentVersion.content.mobileSrc 
+    : currentVersion.content.src;
+
 
   // Reset video ready state when project changes
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -63,10 +91,13 @@ export function ProjectDisplay({
         }
       }}
     >
-      {/* Video Background with Preloading */}
-      <div className="absolute inset-0">
+      {/* Solid Black Background - lowest z-index */}
+      <div className="absolute inset-0 bg-black" />
+
+      {/* Video Display - middle z-index */}
+      <div className="absolute inset-0 z-0">
         <ReactPlayer
-          url={currentVersion.content.src}
+          url={videoSource}
           playing={true}
           loop={true}
           muted={true}
@@ -82,7 +113,7 @@ export function ProjectDisplay({
             left: 0,
             pointerEvents: 'none',
             objectFit: 'cover',
-            opacity: isVideoReady ? 1 : 0,
+            opacity: 1,
             transition: 'opacity 0.5s ease-in-out'
           }}
           config={{
@@ -99,38 +130,15 @@ export function ProjectDisplay({
         />
       </div>
 
-      {/* Content Overlay */}
-      <div className="absolute inset-0 bg-black/80" />
+      {/* Conditional overlay - only darkens on mobile when info panel is expanded */}
+      <div 
+        className={`
+          absolute inset-0 z-10 transition-colors duration-300
+          ${isInfoExpanded ? 'bg-black/70 md:bg-black/20' : 'bg-black/20'}
+        `} 
+      />
 
-       {/* Project Details */}
-       {/* <AnimatePresence mode="wait">
-        <motion.div 
-          key={`${project.id}-${project.currentVersion}`}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className={`
-            absolute inset-0 
-            ${isInfoExpanded ? 'overflow-y-auto' : 'overflow-hidden'}
-          `}
-        >
-          <MobileDisplay 
-            currentVersion={currentVersion}
-            isInfoExpanded={isInfoExpanded}
-            toggleInfoPanel={toggleInfoPanel}
-            project={project}
-          />
-          
-          <DesktopDisplay 
-            currentVersion={currentVersion}
-            project={project}
-          />
-        </motion.div>
-      </AnimatePresence>
-    </motion.div> */}
-
-      {/* Project Details */}
+      {/* Project Details - highest z-index */}
       <AnimatePresence mode="wait">
         <motion.div 
           key={`${project.id}-${project.currentVersion}`}
@@ -139,7 +147,7 @@ export function ProjectDisplay({
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.3 }}
           className={`
-            absolute inset-0 
+            absolute inset-0 z-20
             ${isInfoExpanded ? 'overflow-y-auto' : 'overflow-hidden'}
           `}
         >
