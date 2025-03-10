@@ -7,6 +7,8 @@ import { Globe, Info, X } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+//@coderabbitai generate unit testing code for this file.
+
 interface ProjectDisplayProps {
   project: Project;
   onNext: () => void;
