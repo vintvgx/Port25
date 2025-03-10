@@ -47,12 +47,6 @@ export function ProjectDisplay({
       return () => window.removeEventListener('resize', checkIsMobile);
     }, []);
 
-     // Reset video and info panel when project changes
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-    setIsVideoReady(false);
-    setIsInfoExpanded(false);
-  }, [project.id]);
 
   const currentVersion = project.versions[project.currentVersion || ""];
   if (!currentVersion) return null;
