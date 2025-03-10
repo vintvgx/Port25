@@ -21,6 +21,7 @@ export function ProjectDisplay({
   onPrev
 }: ProjectDisplayProps) {
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
