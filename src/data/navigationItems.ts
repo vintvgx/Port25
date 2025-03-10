@@ -74,7 +74,8 @@ export const navigationItems: NavItem[] = [
             ],
             content: {
                 type: "video",
-                src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/Collections.mp4')}`,
+                src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/COLLECTIONS-16.9-2025+.mp4')}`,
+                mobileSrc: `/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.6/COLLECTIONS-9.16-2025.mp4')}`
               },
             links: {
                 github: "https://github.com/vintvgx"
