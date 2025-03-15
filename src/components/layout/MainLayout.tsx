@@ -151,15 +151,6 @@ export function MainLayout() {
 
       {/* Project Display */}
       <Background>
-        {/* <ProjectDisplay
-          key={`${currentProject.id}-${currentVersion}`}
-          project={{
-            ...currentProject,
-            currentVersion: currentVersion || currentProject.currentVersion,
-          }}
-          onNext={handleNextProject}
-          onPrev={handlePrevProject}
-        /> */}
         <ReactSlickSlider
           projects={projects}
           currentProject={{
@@ -167,7 +158,6 @@ export function MainLayout() {
             currentVersion: currentVersion || currentProject.currentVersion,
           }}
           currentProjectIndex={currentProjectIndex}
-          // currentVersion={currentVersion}
           onSlideChange={(index) => setCurrentProjectIndex(index)}
         />
       </Background>
