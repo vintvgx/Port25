@@ -16,8 +16,8 @@ export const navigationItems: NavItem[] = [
             technologies: ["React", "TypeScript", "Tailwind"],
             content: {
               type: "video",
-              src: `/api/video?url=${encodeURIComponent("https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.v3/3.0.0/URBAN-2.mp4")}`,
-            },
+              src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.legacy/2.0.0/URBAN-16.9.mp4')}`,
+              mobileSrc:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.legacy/2.0.0/URBAN-9.16.mp4')}`,            },
             links: {
               demo: "https://urbanai.info",
               github: "https://github.com/vintvgx/URBAN.ai.njs",
@@ -131,7 +131,8 @@ export const navigationItems: NavItem[] = [
             ],
             content: {
               type: "video",
-              src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/SCOUT/1.3.8/SCOUT.mp4')}`,
+              src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/SCOUT/1.3.8/SCOUT-16.9.mp4')}`,
+              mobileSrc:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/SCOUT/1.3.8/SCOUT-9.16.mp4')}`,
             },
             links: {
                 github: 'https://github.com/vintvgx/SCOUT',
