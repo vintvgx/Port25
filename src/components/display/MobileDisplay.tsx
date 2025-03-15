@@ -1,6 +1,6 @@
 import { Project, ProjectVersion } from "@/types/content";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Info, Globe } from "lucide-react";
+import { X, Info, Globe, Github } from "lucide-react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 
@@ -103,13 +103,7 @@ interface MobileDisplayProps {
                               className="rounded-full bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 h-12 px-6 flex items-center"
                               asChild>
                               <a href={currentVersion.links.github} className="inline-flex items-center">
-                                <svg
-                                  className="h-5 w-5 flex-shrink-0"
-                                  viewBox="0 0 24 24"
-                                  fill="white"
-                                  xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12 2C6.477 2 2 6.477 2 12C2 16.418 4.865 20.166 8.84 21.489C9.34 21.581 9.52 21.278 9.52 21.017C9.52 20.781 9.512 20.082 9.508 19.263C6.726 19.861 6.139 17.96 6.139 17.96C5.685 16.812 5.028 16.51 5.028 16.51C4.128 15.897 5.095 15.909 5.095 15.909C6.092 15.979 6.626 16.926 6.626 16.926C7.521 18.447 8.969 18.006 9.54 17.754C9.63 17.119 9.889 16.679 10.175 16.419C7.956 16.156 5.62 15.319 5.62 11.534C5.62 10.415 6.01 9.499 6.646 8.778C6.545 8.527 6.203 7.539 6.747 6.158C6.747 6.158 7.587 5.894 9.497 7.192C10.295 6.973 11.15 6.864 12 6.859C12.85 6.864 13.705 6.973 14.505 7.192C16.413 5.894 17.251 6.158 17.251 6.158C17.797 7.539 17.455 8.527 17.354 8.778C17.991 9.499 18.38 10.415 18.38 11.534C18.38 15.329 16.04 16.154 13.813 16.411C14.172 16.73 14.492 17.363 14.492 18.329C14.492 19.707 14.479 20.688 14.479 21.017C14.479 21.281 14.657 21.587 15.167 21.486C19.138 20.161 22 16.416 22 12C22 6.477 17.523 2 12 2Z" />
-                                </svg>
+                              <Github className="h-5 w-5 flex-shrink-0" />
                                 <span className="ml-2 whitespace-nowrap">GitHub</span>
                               </a>
                             </Button>
