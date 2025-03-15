@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Background } from "./Background";
 import { Project } from "@/types/content";
 import { navigationItems } from "@/data/navigationItems";
-import { AnimatePresence } from "framer-motion";
-import { ProjectDisplay } from "../ProjectDisplay";
 import { Button } from "../ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -68,7 +66,6 @@ export function MainLayout() {
   };
 
   const handleDialogClose = () => {
-    ``;
     setActiveDialog(null);
   };
 
@@ -221,7 +218,6 @@ export function MainLayout() {
           currentProjectIndex={currentProjectIndex}
           // currentVersion={currentVersion}
           onSlideChange={(index) => setCurrentProjectIndex(index)}
-          sliderRef={sliderRef}
         />
       </Background>
 
