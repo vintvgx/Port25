@@ -8,3 +8,5 @@ export interface MenuDialog {
     career?: CareerItem[];
     info?: InfoItem[];
 }
+
+export type DialogType = "projects" | "about" | "contact" | null;
