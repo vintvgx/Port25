@@ -2,6 +2,8 @@ import MobileMenu from "./Menus/MobileMenu";
 import { Button } from "./ui/button";
 import { DialogType } from "@/types/menu";
 
+// Update MobileMenu
+
 interface HeaderProps {
     handleDialogOpen: (dialog: DialogType) => void 
     handleProjectSelect: (index: number, version: string) => void
