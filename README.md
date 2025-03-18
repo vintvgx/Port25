@@ -44,3 +44,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
   - Prepare for buidl this weekend
     - update displayed videos (remove background using Davinci
     - update mobile display of applicaiton
+   
+3/18
+  - update menus 
