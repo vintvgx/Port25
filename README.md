@@ -47,3 +47,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
    
 3/18
   - update menus 
+
+3/19
+  - release 
