@@ -12,6 +12,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { ReactSlickSlider } from "../ReactSlickSlider";
 import { DialogType } from "@/types/menu";
 import Header from "../Header";
+import AboutDialog from "../Dialogs/AboutDialog";
+import ContactDialog from "../Dialogs/ContactDialog";
 
 
 /**
@@ -141,8 +143,8 @@ export function MainLayout() {
       />
 
       {/* TODO: Create and import AboutDialog and ContactDialog components */}
-      {/* <AboutDialog isOpen={activeDialog === 'about'} onClose={handleDialogClose} />
-      <ContactDialog isOpen={activeDialog === 'contact'} onClose={handleDialogClose} /> */}
+      <AboutDialog isOpen={activeDialog === 'about'} onClose={handleDialogClose} />
+      <ContactDialog isOpen={activeDialog === 'contact'} onClose={handleDialogClose} />
 
       <Header
         handleDialogOpen={handleDialogOpen}
