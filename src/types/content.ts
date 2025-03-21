@@ -13,6 +13,7 @@ export interface ProjectVersion {
     github?: string;
   };
   date: string;
+  version: string;
   isLatest?: boolean;
 }
 

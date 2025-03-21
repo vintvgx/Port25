@@ -12,8 +12,8 @@ export const navigationItems: NavItem[] = [
         versions: {
           "2.0.0": {
             title: "Urban AI",
-            description: "Urban.ai is a fun and interactive chatbot that bridges the gap between technology and street culture. Designed to engage users in a unique way, it responds to queries and conversations using the vibrant and dynamic language of urban slang.n",
-            technologies: ["React", "TypeScript", "Tailwind"],
+            description: "Urban.ai is an interactive chatbot that bridges the gap between technology and street culture. Designed to engage users in a unique way, it responds to queries and conversations using the dynamic language of urban slang.",
+            technologies: ["React", "Open AI", "MongoDB", "TypeScript", "Tailwind", "Next JS"],
             content: {
               type: "video",
               src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/urban.legacy/2.0.0/URBAN-16.9.mp4')}`,
@@ -23,12 +23,12 @@ export const navigationItems: NavItem[] = [
               github: "https://github.com/vintvgx/URBAN.ai.njs",
             },
             date: "12/2024",
+            version: "2.0.0",
             isLatest: true
           },
           "1.0.0": {
-            title: "Urban AI v2",
-            description:
-              "Welcome to Urban.ai, an innovative chatbot designed to bring you a unique conversational experience! Powered by ChatGPT-4 Turbo, our chatbot not only provides accurate and coherent responses but also incorporates phrases and slang from Urban Dictionary to keep the conversation lively and contemporary.",
+            title: "Urban AI ",
+            description: "Urban.ai is an interactive chatbot that bridges the gap between technology and street culture using Chat-GPT4. Designed to engage users in a unique way, it responds to queries and conversations using the dynamic language of urban slang.",
             technologies: [
               "React",
               "Typescript",
@@ -46,6 +46,7 @@ export const navigationItems: NavItem[] = [
               demo: "https://urbanai.info",
               github: "https://github.com/vintvgx/Urban.ai",
             },
+            version: "1.0.0",
             date: "09/2022"
           },
         },
