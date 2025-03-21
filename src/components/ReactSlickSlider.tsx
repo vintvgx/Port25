@@ -232,7 +232,7 @@ export function ReactSlickSlider({
                           </h2>
                           <div className="flex items-center backdrop-blur-sm rounded-full px-3 py-1 w-fit">
                             <span className="text-xs text-white/70">
-                              Version {project.currentVersion}
+                              Version {currentVersion.version}
                             </span>
                             {currentVersion?.isLatest && (
                               <span className="ml-2 text-xs bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full">
