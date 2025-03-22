@@ -34,7 +34,7 @@ export function ProjectDisplay({
     // Detect if the device is mobile based on viewport width
     useEffect(() => {
       const checkIsMobile = () => {
-        setIsMobile(window.innerWidth < 768); // 768px is the standard md breakpoint in Tailwind
+        setIsMobile(window.innerWidth < 1024); // 768px is the standard md breakpoint in Tailwind
       };
       
       // Initial check

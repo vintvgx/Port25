@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Accordion,
@@ -10,24 +10,20 @@ import { Button } from "@/components/ui/button";
 import { Menu, Linkedin, Github, Twitter } from "lucide-react";
 import { Project } from "@/types/content";
 import { navigationItems } from "@/data/navigationItems";
+import { AccordionHeader } from "@radix-ui/react-accordion";
 
 interface MobileMenuProps {
   onProjectSelect: (index: number, version: string) => void;
+  setIsOpen: (bool: boolean) => void;
+  isOpen: boolean;
 }
 
-const MobileMenu = ({ onProjectSelect }: MobileMenuProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const MobileMenu = ({ onProjectSelect, setIsOpen, isOpen }: MobileMenuProps) => {
   const projects = navigationItems.find((item) => item.category === "PROJECTS")
     ?.items as Project[];
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="h-5 w-5" />
-        </Button>
-      </SheetTrigger>
       <SheetContent
         side="left"
         className="w-full p-0 bg-black/10 backdrop-blur-sm text-white
@@ -35,9 +31,9 @@ const MobileMenu = ({ onProjectSelect }: MobileMenuProps) => {
         !animate-in !fade-in-0
         !data-[state=closed]:animate-out !data-[state=closed]:fade-out-0
         !data-[state=open]:slide-in-from-left-0 !data-[state=closed]:slide-out-to-left-0">
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full w-full">
           {/* Logo/Name Section */}
-          <div className="p-6 border-b border-gray-800">
+          <div className="p-6 mb-10 border-b border-gray-800">
             <span className="text-gray-200 text-2xl font-light">Kareem Saygbe</span>
           </div>
 
