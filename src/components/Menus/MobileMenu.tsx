@@ -1,5 +1,3 @@
-import React from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   Accordion,
   AccordionContent,
@@ -7,18 +5,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Menu, Linkedin, Github, Twitter } from "lucide-react";
-import { Project } from "@/types/content";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { navigationItems } from "@/data/navigationItems";
-import { AccordionHeader } from "@radix-ui/react-accordion";
+import { Project } from "@/types/content";
+import { DialogType } from "@/types/menu";
+import { Github, Linkedin, Twitter } from "lucide-react";
 
 interface MobileMenuProps {
   onProjectSelect: (index: number, version: string) => void;
+  handleDialogOpen: (dialog: DialogType) => void 
   setIsOpen: (bool: boolean) => void;
   isOpen: boolean;
 }
 
-const MobileMenu = ({ onProjectSelect, setIsOpen, isOpen }: MobileMenuProps) => {
+const MobileMenu = ({ onProjectSelect, handleDialogOpen, setIsOpen, isOpen }: MobileMenuProps) => {
   const projects = navigationItems.find((item) => item.category === "PROJECTS")
     ?.items as Project[];
 
@@ -86,7 +86,7 @@ const MobileMenu = ({ onProjectSelect, setIsOpen, isOpen }: MobileMenuProps) => 
               <Button
                 variant="ghost"
                 className="w-full justify-start px-6 py-4 text-xl font-light text-white hover:bg-transparent hover:text-gray-300"
-                onClick={() => setIsOpen(false)}>
+                onClick={() => handleDialogOpen("about")}>
                 About
               </Button>
 

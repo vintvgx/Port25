@@ -6,16 +6,18 @@ import { DialogType } from "@/types/menu";
 interface HeaderProps {
     handleDialogOpen: (dialog: DialogType) => void 
     handleProjectSelect: (index: number, version: string) => void
+    isMobileMenuOpen: boolean,
+    setOpenMobileMenu: (bool: boolean) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({
     handleDialogOpen,
-    handleProjectSelect
+    handleProjectSelect,
+    isMobileMenuOpen,
+    setOpenMobileMenu
 }) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
-  const [isMobileMenuOpen, setOpenMobileMenu] = useState(false)
 
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
 
@@ -32,8 +34,13 @@ const Header: React.FC<HeaderProps> = ({
   }, [checkMobile]);
 
   const toggleMenu = () => {
+    console.log("🚀 ~ toggleMenu ~ toggleMenu:", toggleMenu)
+    console.log("isMobileOpen", isMobileMenuOpen)
+
     if (isMobile){
       setOpenMobileMenu(true)
+      console.log("isMobileOpen", isMobileMenuOpen)
+
       return
     }
 
@@ -52,6 +59,7 @@ const Header: React.FC<HeaderProps> = ({
       setTimerId(id);
     }
   };
+
   
   // Clean up timer when component unmounts
   useEffect(() => {
@@ -130,8 +138,9 @@ const Header: React.FC<HeaderProps> = ({
         <div className="absolute top-16 left-0 right-0 z-30 bg-white shadow-md rounded-b-md transition-opacity duration-300 ease-in-out">
           <MobileMenu 
             onProjectSelect={handleProjectSelect} 
-            setIsOpen={setOpenMobileMenu}
             isOpen={isMobileMenuOpen}
+            setIsOpen={setOpenMobileMenu}
+            handleDialogOpen={handleDialogOpen}
           />
         </div>
       )}

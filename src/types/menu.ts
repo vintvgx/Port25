@@ -9,4 +9,4 @@ export interface MenuDialog {
     info?: InfoItem[];
 }
 
-export type DialogType = "projects" | "about" | "contact" | null;
+export type DialogType = "projects" | "about" | "contact" | "versionControl" | null;

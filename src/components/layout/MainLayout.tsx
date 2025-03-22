@@ -31,6 +31,10 @@ export function MainLayout() {
   // State for desktop dialogs
   const [activeDialog, setActiveDialog] = useState<DialogType>(null);
 
+  // State for mobile menu display
+  const [isMobileMenuOpen, setOpenMobileMenu] = useState(false)
+
+
   // Set initial version when project changes
   useEffect(() => {
     setCurrentVersion(currentProject.currentVersion);
@@ -61,6 +65,9 @@ export function MainLayout() {
 
   // Helper function to handle dialog state
   const handleDialogOpen = (dialog: DialogType) => {
+    // close mobile menu only if it is displayed
+    if (isMobileMenuOpen) setOpenMobileMenu(false)
+
     setActiveDialog(dialog);
   };
 
@@ -149,6 +156,8 @@ export function MainLayout() {
       <Header
         handleDialogOpen={handleDialogOpen}
         handleProjectSelect={handleProjectSelect}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setOpenMobileMenu={setOpenMobileMenu}
         />
 
       {/* Project Display */}
