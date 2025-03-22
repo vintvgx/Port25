@@ -40,7 +40,7 @@ export default function AboutDialog({
           
           <div className="mt-8 flex justify-center space-x-6">
             <a 
-              href="https://linkedin.com/in/username" 
+              href="https://www.linkedin.com/in/kareem-saygbe-63b82a1b4/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors"
@@ -49,7 +49,7 @@ export default function AboutDialog({
               <span className="text-sm">LinkedIn</span>
             </a>
             <a 
-              href="https://github.com/username" 
+              href="https://github.com/vintvgx" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
