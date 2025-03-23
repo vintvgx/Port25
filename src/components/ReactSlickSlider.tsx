@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Project } from "@/types/content";
+import { AnimatePresence, motion } from "framer-motion";
+import { Github, Globe } from "lucide-react";
+import { RefObject, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { ClipLoader } from "react-spinners";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import MobileDisplay from "./display/MobileDisplay";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Github, Globe } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import MobileDisplay from "./display/MobileDisplay";
 
 // dynamically import Slider to resolve Hydration error (rendering component for mobile or desktop view)
 import dynamic from "next/dynamic";
@@ -19,6 +19,8 @@ interface ReactSlickSliderProps {
   currentProject: Project;
   currentProjectIndex?: number;
   onSlideChange?: (index: number) => void;
+  hasMounted: RefObject<boolean>;
+  isMobile?: boolean;
 }
 
 export function ReactSlickSlider({
@@ -26,34 +28,17 @@ export function ReactSlickSlider({
   currentProject,
   currentProjectIndex = 0,
   onSlideChange = () => {},
+  hasMounted,
+  isMobile
 }: ReactSlickSliderProps) {
   // 1. GROUP ALL HOOKS AT THE TOP LEVEL
   const [isInfoExpanded, setIsInfoExpanded] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [videoReadyState, setVideoReadyState] = useState<
     Record<string, boolean>
   >({});
-  const hasMounted = useRef(false);
 
-  // Detect if the device is mobile based on viewport width
-  useEffect(() => {
-    hasMounted.current = true;
-
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    // Initial check
-    checkIsMobile();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIsMobile);
-
-    // Cleanup
-    return () => window.removeEventListener("resize", checkIsMobile);
-  }, []);
 
   // resets video ready and info state when project changes
   useEffect(() => {
