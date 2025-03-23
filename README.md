@@ -54,3 +54,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 3/21 
 DEPLOY!
+
+# 3.25 notes
+

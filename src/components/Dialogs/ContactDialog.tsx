@@ -214,7 +214,7 @@ export default function ContactDialog({
             
             {submitStatus === 'success' && (
               <div className="p-3 mt-3 bg-green-100 text-green-700 rounded-md text-center">
-                Your message has been sent successfully. I'll get back to you soon!
+                Your message has been sent successfully. I&apos;ll get back to you soon!
               </div>
             )}
             
