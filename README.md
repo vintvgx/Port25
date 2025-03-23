@@ -1,6 +1,10 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+This is a [Next.J's](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
+
+2/5
+2/6 - updating PROJECT!
 
 First, run the development server:
 
@@ -36,5 +40,20 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # Portfolio25
 
+3/5
+  - Prepare for buidl this weekend
+    - update displayed videos (remove background using Davinci
+    - update mobile display of applicaiton
+   
+3/18
+  - update menus 
+
+3/19
+  - release 
+
+
+3/21 
+DEPLOY!
 
 # 3.25 notes
+
