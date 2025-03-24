@@ -169,8 +169,5 @@ export default function SwipeInstructionsModal({
 export const hasSeenSwipeInstructions = (): boolean => {
   if (typeof window === "undefined") return false;
   const swipeSeen = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-  console.log("🚀 ~ hasSeenSwipeInstructions ~ swipeSeen:", swipeSeen);
-
-  return localStorage.getItem(LOCAL_STORAGE_KEY) === "true";
+  return swipeSeen === "true";
 };
