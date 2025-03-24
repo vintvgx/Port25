@@ -7,8 +7,11 @@ interface DesktopDisplayProp {
     currentVersion: ProjectVersion;
 }
 
+/**
+ *  Desktop View: Maintain existing layout 
+ *
+ */
 export default function DesktopDisplay({ currentVersion} : DesktopDisplayProp) {
-    {/* Desktop View: Maintain existing layout */}
   return (
      <div className="hidden lg:block absolute bottom-0 left-0 right-0 p-12">
      <div className="space-y-6">

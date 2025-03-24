@@ -1,17 +1,17 @@
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import React, { Dispatch, SetStateAction } from 'react'
-import { Button } from '../ui/button';
-import { DialogHeader, DialogFooter } from '../ui/dialog';
 import { Project } from '@/types/content';
+import { Dispatch, SetStateAction } from 'react';
+import { Button } from '../ui/button';
+import { DialogFooter, DialogHeader } from '../ui/dialog';
 
-interface VideoLoadErrorDialogType {
+interface VideoLoadErrorDialogProps {
     currentProject: Project;
     videoErrors: Record<string, boolean>;
     setVideoErrors: Dispatch<SetStateAction<Record<string, boolean>>>;
     currentProjectIndex: number;
 }
 
-export default function VideoLoadErrorDialog({currentProject, videoErrors, setVideoErrors, currentProjectIndex}: VideoLoadErrorDialogType) {
+export default function VideoLoadErrorDialog({currentProject, videoErrors, setVideoErrors, currentProjectIndex}: VideoLoadErrorDialogProps) {
   return (
      <Dialog 
      open={!!currentProject && videoErrors[currentProject.id] === true} 
