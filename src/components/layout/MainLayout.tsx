@@ -77,7 +77,7 @@ export function MainLayout() {
     if (!hasSeenSwipeInstructions() && isMobile) {
       setShowSwipeInstructions(true);
     }
-  }, []);
+  }, [isMobile]);
   
   // Add this handler for closing the swipe instructions
   const handleSwipeInstructionsClose = () => {
