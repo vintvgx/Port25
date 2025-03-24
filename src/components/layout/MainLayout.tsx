@@ -14,6 +14,7 @@ import BottomNav from "../utils/BottomNav";
 import Header from "../utils/Header";
 import { Background } from "./Background";
 import VersionCtrlDialog from "../Dialogs/VersionCtrlDialog";
+import SplashScreen from "../utils/SplashScreen";
 
 
 /**
@@ -28,6 +29,8 @@ export function MainLayout() {
   const currentProject = projects[currentProjectIndex];
   const sliderRef = useRef<Slider | null>(null);
 
+  const [showSplash, setShowSplash] = useState(true);
+
   // State for desktop dialogs
   const [activeDialog, setActiveDialog] = useState<DialogType>(null);
 
@@ -39,6 +42,16 @@ export function MainLayout() {
   const [showSwipeInstructions, setShowSwipeInstructions] = useState(false);
 
   const hasMounted = useRef(false);
+
+  useEffect(() => {
+    const timerSplash = setTimeout(() => {
+      setShowSplash(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timerSplash);
+    };
+  }, []);
 
   // Detect if the device is mobile based on viewport width
   useEffect(() => {
@@ -118,6 +131,9 @@ export function MainLayout() {
 
   return (
     <div className="min-h-screen bg-white">
+
+      {showSplash && <SplashScreen />}
+      
       {/* Add SwipeInstructionsModal */}
       <SwipeInstructionsModal 
         isOpen={showSwipeInstructions} 

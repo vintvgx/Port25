@@ -41,7 +41,7 @@ export default function DesktopDisplay({ currentVersion} : DesktopDisplayProp) {
              <Badge
                key={tech}
                variant="secondary"
-               className="text-xs md:text-sm rounded-full px-3 py-1 bg-black/40 text-white border-white/10 backdrop-blur-sm">
+               className="text-xs md:text-sm rounded-full px-3 py-1 bg-black/40 text-white border-[#d5661c68] backdrop-blur-sm">
                {tech}
              </Badge>
            ))}

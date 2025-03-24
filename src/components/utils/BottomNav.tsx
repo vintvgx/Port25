@@ -28,7 +28,7 @@ export default function BottomNav({currentProjectIndex, projects, handlePrevProj
       <Button
         variant="ghost"
         size="icon"
-        className="hover:bg-gray-100 rounded-full"
+        className="text-[#D5661C] hover:bg-gray-100 rounded-full"
         onClick={handlePrevProject}>
         <ArrowLeft className="h-4 w-4" />
         <span className="sr-only">Previous project</span>
@@ -41,7 +41,7 @@ export default function BottomNav({currentProjectIndex, projects, handlePrevProj
       <Button
         variant="ghost"
         size="icon"
-        className="hover:bg-gray-100 rounded-full"
+        className="text-[#D5661C] hover:bg-gray-100 rounded-full"
         onClick={handleNextProject}>
         <ArrowRight className="h-4 w-4" />
         <span className="sr-only">Next project</span>

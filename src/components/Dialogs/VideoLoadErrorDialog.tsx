@@ -38,7 +38,7 @@ export default function VideoLoadErrorDialog({currentProject, videoErrors, setVi
        
        <div className="py-4">
          <p className="text-white text-center mb-4">
-           Please refresh to reload the video
+           Please refresh to reload the page
          </p>
        </div>
        

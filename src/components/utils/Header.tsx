@@ -76,10 +76,10 @@ const Header: React.FC<HeaderProps> = ({
       <div className="flex items-center">
         <Button
           variant="noBackground"
-          className={`text-sm transition-colors ${
+          className={`text-sm text-[#D5661C] transition-colors ${
             menuVisible 
-              ? "bg-gray-100 text-gray-800 font-medium" 
-              : "text-gray-500 hover:text-gray-700"
+              ? "bg-gray-100 font-medium" 
+              : "text-[#D5661C] hover:text-gray-700"
           }`}
           onClick={toggleMenu}>
           Menu
@@ -127,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({
       <div>
         <Button
           variant="noBackground"
-          className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+          className="text-sm text-[#D5661C] hover:text-gray-700 transition-colors"
           onClick={() => handleDialogOpen("versionControl")}>
           Version
         </Button>
