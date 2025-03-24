@@ -1,6 +1,6 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Project } from "@/types/content";
-import { Badge } from "./ui/badge";
+import { Badge } from "../ui/badge";
 
 interface InfoDialogProps {
   isOpen: boolean;

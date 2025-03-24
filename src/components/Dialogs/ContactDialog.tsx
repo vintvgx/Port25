@@ -9,11 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
-
-interface ContactDialogProps {
-  isOpen: boolean;
-  onClose: (open: boolean) => void;
-}
+import { DialogProps } from '@/types/menu';
 
 interface FormState {
   name: string;
@@ -30,7 +26,7 @@ interface FormErrors {
 export default function ContactDialog({
   isOpen,
   onClose,
-}: ContactDialogProps) {
+}: DialogProps) {
   const [formState, setFormState] = useState<FormState>({
     name: '',
     email: '',

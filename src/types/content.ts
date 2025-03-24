@@ -53,5 +53,3 @@ export interface NavItem {
   category: 'PROJECTS' | 'CAREER' | 'INFO';
   items: (Project | CareerItem | InfoItem)[];
 }
-
-// Add other necessary types...

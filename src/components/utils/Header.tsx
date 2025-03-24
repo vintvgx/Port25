@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import MobileMenu from "./Menus/MobileMenu";
-import { Button } from "./ui/button";
+import MobileMenu from "../Menus/MobileMenu";
+import { Button } from "../ui/button";
 import { DialogType } from "@/types/menu";
 
 interface HeaderProps {
