@@ -1,10 +1,10 @@
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
-} from "./ui/dropdown-menu";
+} from "../ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 
 interface VersionSelectorProps {

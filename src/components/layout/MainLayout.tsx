@@ -1,20 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { Background } from "./Background";
-import { Project } from "@/types/content";
 import { navigationItems } from "@/data/navigationItems";
-import { Button } from "../ui/button";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import ProjectMenuDialog from "../Menus/ProjectMenu";
-import { VersionSelector } from "../VersionSelector";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { ReactSlickSlider } from "../ReactSlickSlider";
+import { Project } from "@/types/content";
 import { DialogType } from "@/types/menu";
-import Header from "../Header";
+import { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import AboutDialog from "../Dialogs/AboutDialog";
 import ContactDialog from "../Dialogs/ContactDialog";
 import SwipeInstructionsModal, { hasSeenSwipeInstructions } from "../Dialogs/SwipeInstructionsModal";
+import ProjectMenuDialog from "../Menus/ProjectMenu";
+import { ReactSlickSlider } from "../slider/ReactSlickSlider";
+import BottomNav from "../utils/BottomNav";
+import Header from "../utils/Header";
+import { Background } from "./Background";
+import VersionCtrlDialog from "../Dialogs/VersionCtrlDialog";
+import SplashScreen from "../utils/SplashScreen";
 
 
 /**
@@ -29,6 +29,8 @@ export function MainLayout() {
   const currentProject = projects[currentProjectIndex];
   const sliderRef = useRef<Slider | null>(null);
 
+  const [showSplash, setShowSplash] = useState(true);
+
   // State for desktop dialogs
   const [activeDialog, setActiveDialog] = useState<DialogType>(null);
 
@@ -40,6 +42,16 @@ export function MainLayout() {
   const [showSwipeInstructions, setShowSwipeInstructions] = useState(false);
 
   const hasMounted = useRef(false);
+
+  useEffect(() => {
+    const timerSplash = setTimeout(() => {
+      setShowSplash(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timerSplash);
+    };
+  }, []);
 
   // Detect if the device is mobile based on viewport width
   useEffect(() => {
@@ -65,7 +77,7 @@ export function MainLayout() {
     if (!hasSeenSwipeInstructions() && isMobile) {
       setShowSwipeInstructions(true);
     }
-  }, []);
+  }, [isMobile]);
   
   // Add this handler for closing the swipe instructions
   const handleSwipeInstructionsClose = () => {
@@ -97,9 +109,6 @@ export function MainLayout() {
     }
   };
 
-  // Get available versions for current project
-  const versions = currentProject ? Object.keys(currentProject.versions) : [];
-
   // Helper function to handle dialog state
   const handleDialogOpen = (dialog: DialogType) => {
     // close mobile menu only if it is displayed
@@ -120,64 +129,11 @@ export function MainLayout() {
   };
 
 
-  const BottomNav = () => (
-    <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center mx-2 h-16 md:mx-6 gap-4 backdrop-blur-sm">
-      {/* Full Stack Dev Text  */}
-      <div className="hidden md:block text-gray-500">
-        <h1 className="text-lg font-light">Full Stack Developer</h1>
-      </div>
-
-      {/* Prev and Next button  */}
-      <div className="flex items-center gap-4 text-sm text-gray-500 order-1 md:order-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="hover:bg-gray-100 rounded-full"
-          onClick={handlePrevProject}>
-          <ArrowLeft className="h-4 w-4" />
-          <span className="sr-only">Previous project</span>
-        </Button>
-        <span className="text-xs tracking-wider uppercase">
-          {`${String(currentProjectIndex + 1).padStart(2, "0")} / ${String(
-            projects.length
-          ).padStart(2, "0")}`}
-        </span>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="hover:bg-gray-100 rounded-full"
-          onClick={handleNextProject}>
-          <ArrowRight className="h-4 w-4" />
-          <span className="sr-only">Next project</span>
-        </Button>
-      </div>
-
-      {/* Version Selector  */}
-      <div className="flex items-center gap-2 w-full md:w-auto justify-end order-2 md:order-3">
-        {versions.length > 0 && (
-          <div className="md:hidden w-full">
-            <VersionSelector
-              versions={versions}
-              currentVersion={currentVersion}
-              onVersionSelect={setCurrentVersion}
-              variant="mobile"
-            />
-          </div>
-        )}
-        <div className="hidden md:block">
-          <VersionSelector
-            versions={versions}
-            currentVersion={currentVersion}
-            onVersionSelect={setCurrentVersion}
-            variant="desktop"
-          />
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="min-h-screen bg-white">
+
+      {showSplash && <SplashScreen />}
+      
       {/* Add SwipeInstructionsModal */}
       <SwipeInstructionsModal 
         isOpen={showSwipeInstructions} 
@@ -195,6 +151,13 @@ export function MainLayout() {
       {/* TODO: Create and import AboutDialog and ContactDialog components */}
       <AboutDialog isOpen={activeDialog === 'about'} onClose={handleDialogClose} />
       <ContactDialog isOpen={activeDialog === 'contact'} onClose={handleDialogClose} />
+      <VersionCtrlDialog 
+        isOpen={activeDialog === 'versionControl'} 
+        onClose={handleDialogClose}
+        currentProject={currentProject}
+        currentVersion={currentVersion}
+        setCurrentVersion={setCurrentVersion} 
+      />
 
       <Header
         handleDialogOpen={handleDialogOpen}
@@ -218,7 +181,15 @@ export function MainLayout() {
         />
       </Background>
 
-      <BottomNav />
+      <BottomNav
+        currentProjectIndex={currentProjectIndex}
+        currentVersion={currentVersion}
+        projects={projects}
+        currentProject={currentProject}
+        setCurrentVersion={setCurrentVersion}
+        handleNextProject={handleNextProject}
+        handlePrevProject={handlePrevProject}
+        />
     </div>
   );
 }

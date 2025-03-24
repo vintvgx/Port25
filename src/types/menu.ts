@@ -9,4 +9,9 @@ export interface MenuDialog {
     info?: InfoItem[];
 }
 
+export interface DialogProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
 export type DialogType = "projects" | "about" | "contact" | "versionControl" | "swipeInstructions" | null;
