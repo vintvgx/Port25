@@ -14,6 +14,7 @@ import { DialogType } from "@/types/menu";
 import Header from "../Header";
 import AboutDialog from "../Dialogs/AboutDialog";
 import ContactDialog from "../Dialogs/ContactDialog";
+import SwipeInstructionsModal, { hasSeenSwipeInstructions } from "../Dialogs/SwipeInstructionsModal";
 
 
 /**
@@ -31,9 +32,45 @@ export function MainLayout() {
   // State for desktop dialogs
   const [activeDialog, setActiveDialog] = useState<DialogType>(null);
 
-  // State for mobile menu display
+  // State for mobile + mobile menu
+  const [isMobile, setIsMobile] = useState(false);
   const [isMobileMenuOpen, setOpenMobileMenu] = useState(false)
 
+  // Add this state for tracking if swipe instructions should be shown
+  const [showSwipeInstructions, setShowSwipeInstructions] = useState(false);
+
+  const hasMounted = useRef(false);
+
+  // Detect if the device is mobile based on viewport width
+  useEffect(() => {
+    hasMounted.current = true;
+
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    // Initial check
+    checkIsMobile();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkIsMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+  
+  // Check localStorage on initial load to see if we should show instructions
+  useEffect(() => {
+    // Only show instructions if user hasn't seen them before
+    if (!hasSeenSwipeInstructions() && isMobile) {
+      setShowSwipeInstructions(true);
+    }
+  }, []);
+  
+  // Add this handler for closing the swipe instructions
+  const handleSwipeInstructionsClose = () => {
+    setShowSwipeInstructions(false);
+  };
 
   // Set initial version when project changes
   useEffect(() => {
@@ -141,6 +178,12 @@ export function MainLayout() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Add SwipeInstructionsModal */}
+      <SwipeInstructionsModal 
+        isOpen={showSwipeInstructions} 
+        onClose={handleSwipeInstructionsClose} 
+      />
+      
       {/* Desktop Project Menu Dialog */}
       <ProjectMenuDialog
         isOpen={activeDialog === "projects"}
@@ -170,6 +213,8 @@ export function MainLayout() {
           }}
           currentProjectIndex={currentProjectIndex}
           onSlideChange={(index) => setCurrentProjectIndex(index)}
+          hasMounted={hasMounted}
+          isMobile={isMobile}
         />
       </Background>
 
