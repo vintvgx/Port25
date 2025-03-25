@@ -6,11 +6,13 @@ import { ClipLoader } from "react-spinners";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import MobileDisplay from "../display/MobileDisplay";
+import * as Sentry from "@sentry/nextjs"; 
+import VideoLoadErrorDialog from "../Dialogs/VideoLoadErrorDialog";
+import DesktopDisplay from "../display/DesktopDisplay";
+
 
 // dynamically import Slider to resolve Hydration error (rendering component for mobile or desktop view)
 import dynamic from "next/dynamic";
-import VideoLoadErrorDialog from "../Dialogs/VideoLoadErrorDialog";
-import DesktopDisplay from "../display/DesktopDisplay";
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 interface ReactSlickSliderProps {
@@ -179,6 +181,22 @@ export function ReactSlickSlider({
                     onReady={() => handleVideoReady(project.id)}
                     onError={(e) => {
                       console.error("Video error:", e);
+
+                      // Send video load error to Sentry
+                      Sentry.captureException(e, {
+                        tags: {
+                          feature: "video_load_error",
+                          action: "handleVideoReady"
+                        },
+                        contexts: {
+                          project: {
+                            name: project.name,
+                            url: videoSource,
+                            timestamp: new Date().toISOString()
+                          }
+                        }
+                      })
+
                       // Mark the video as having an error
                       setVideoErrors((prev) => ({
                         ...prev,
