@@ -54,13 +54,13 @@ export const navigationItems: NavItem[] = [
       {
         id: "collectionsv2",
         //todo update version of collectionsv2 to 2.0.6 in project
-        currentVersion: "2.0.6",
+        currentVersion: "2.1.2",
         category: "project",
         description:
           "A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by prioritizing user content and cultivating a seamless user experience. ",
         name: "Collections",
         versions: {
-          "2.0.6": {
+          "2.1.2": {
             title: "COLLECTIONS",
             description:
               "A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by  prioritizing user content and cultivating a seamless user experience. ",
@@ -82,9 +82,10 @@ export const navigationItems: NavItem[] = [
                 github: "https://github.com/vintvgx"
             },
             date: "08/2024",
+            version: "2.1.2",
             isLatest: true
           },
-          "1.0.0": {
+          "1.0.2": {
             title: "COLLECTIONS",
             description:
               "A multimedia social application curated and designed for art enthusiasts implemented by utilizing React Native and Google Firebase. Collections reimagines social media by prioritizing user content.",
@@ -100,6 +101,7 @@ export const navigationItems: NavItem[] = [
             links: {
                 github: "https://github.com/vintvgx"
             },
+            version: "1.0.2",
             date: '02/2023'
           },
         },
@@ -117,7 +119,7 @@ export const navigationItems: NavItem[] = [
           text: "Collection of insights and learnings...",
         },
         versions: {
-          "1.3.8": {
+          "1.3.15": {
             title: "SCOUT",
             description:
               "SCOUT is a React Native application designed to track issues and errors for development projects using the Sentry API. This app provides real-time error tracking through notifications, displays access points using ip location and integrates ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.",
@@ -139,6 +141,7 @@ export const navigationItems: NavItem[] = [
                 github: 'https://github.com/vintvgx/SCOUT',
             },
             date: "03/2024",
+            version: "1.3.15",
             isLatest: true
           },
         },
