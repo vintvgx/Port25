@@ -122,7 +122,7 @@ export const navigationItems: NavItem[] = [
           "1.3.15": {
             title: "SCOUT",
             description:
-              "SCOUT is a React Native application designed to track issues and errors for development projects using the Sentry API. This app provides real-time error tracking through notifications, displays access points using ip location and integrates ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.",
+              "SCOUT is a React Native application designed to track issues and errors for development projects using the Sentry API. This app provides real-time error tracking through notifications and integrates ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.",
             technologies: [
               "React Native",
               "Typescript",
