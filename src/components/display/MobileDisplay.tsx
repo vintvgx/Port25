@@ -17,8 +17,8 @@ interface MobileDisplayProps {
     return (
       <>
         {/* Mobile View: Header with Title and Info/Close button */}
-        <div className="block lg:hidden sticky top-0 z-10 px-6 pt-6 pb-3 flex items-center justify-between bg-gradient-to-b from-black/90 to-black/70">
-          <h2 className="text-4xl font-bold tracking-tight text-white pr-3">
+        <div className="lg:hidden sticky top-0 z-10 px-6 pt-6 pb-3 flex items-center justify-between bg-gradient-to-b from-black/40 to-black/0">
+          <h2 className="text-3xl font-bold tracking-tight text-white pr-3">
             {currentVersion.title}
           </h2>
           <Button
@@ -30,7 +30,7 @@ interface MobileDisplayProps {
             {isInfoExpanded ? (
               <X className="h-5 w-5" />
             ) : (
-              <Info className="h-5 w-5" />
+              <Info className="text-[#D5661C] h-5 w-5" />
             )}
           </Button>
         </div>

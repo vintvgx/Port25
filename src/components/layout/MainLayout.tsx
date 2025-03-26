@@ -48,7 +48,7 @@ export function MainLayout() {
     const startTime = Date.now();
 
     // Log browser and device details
-    Sentry.captureMessage("Portfolio Accessed", {
+    Sentry.captureMessage(`Portfolio Accessed on ${isMobile ? "Mobile" : "Desktop"}`, {
       level: "info",
       extra: {
         userAgent: navigator.userAgent,

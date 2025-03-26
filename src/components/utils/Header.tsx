@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({
   }, [timerId]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-20 p-4 flex justify-between items-center mx-2 md:mx-6">
+    <header className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center mx-2 md:mx-6 z-0">
       {/* Left: Menu button and menu items */}
       <div className="flex items-center">
         <Button
