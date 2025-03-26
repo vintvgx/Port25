@@ -12,7 +12,7 @@ export const navigationItems: NavItem[] = [
         versions: {
           "2.0.0": {
             title: "Urban AI",
-            description: "Urban.ai is an interactive chatbot that bridges the gap between technology and street culture. Designed to engage users in a unique way, it responds to queries and conversations using the dynamic language of urban slang.",
+            description: "Urban AI is an interactive chatbot that bridges the gap between technology and street culture. Designed to engage users in a unique way, it responds to queries and conversations using the dynamic language of urban slang.",
             technologies: ["React", "Open AI", "MongoDB", "TypeScript", "Tailwind", "Next JS"],
             content: {
               type: "video",
@@ -28,7 +28,7 @@ export const navigationItems: NavItem[] = [
           },
           "1.0.0": {
             title: "Urban AI ",
-            description: "Urban.ai is an interactive chatbot that bridges the gap between technology and street culture using Chat-GPT4. Designed to engage users in a unique way, it responds to queries and conversations using the dynamic language of urban slang.",
+            description: "Urban AI is an interactive chatbot that bridges the gap between technology and street culture using Chat-GPT4. Designed to engage users in a unique way, it responds to queries and conversations using the dynamic language of urban slang.",
             technologies: [
               "React",
               "Typescript",
