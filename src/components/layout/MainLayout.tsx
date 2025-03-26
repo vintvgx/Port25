@@ -45,29 +45,6 @@ export function MainLayout() {
   const hasMounted = useRef(false);
 
   useEffect(() => {
-    const startTime = Date.now();
-
-    // Log browser and device details
-    Sentry.captureMessage(`Portfolio Accessed on ${isMobile ? "Mobile" : "Desktop"}`, {
-      level: "info",
-      extra: {
-        userAgent: navigator.userAgent,
-        screenResolution: `${window.screen.width}x${window.screen.height}`,
-      },
-    });
-
-    return () => {
-      const duration = Date.now() - startTime;
-      Sentry.captureMessage("Portfolio Page Session Duration", {
-        level: "info",
-        extra: {
-          durationSeconds: Math.floor(duration / 1000),
-        },
-      });
-    };
-  }, []);
-
-  useEffect(() => {
     const timerSplash = setTimeout(() => {
       setShowSplash(false);
     }, 2000);
@@ -94,6 +71,30 @@ export function MainLayout() {
     // Cleanup
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
+
+  // Send access info to Sentry (dependent on isMobile)
+  useEffect(() => {
+    const startTime = Date.now();
+
+    // Log browser and device details
+    Sentry.captureMessage(`Portfolio Accessed on ${isMobile ? "Mobile" : "Desktop"}`, {
+      level: "info",
+      extra: {
+        userAgent: navigator.userAgent,
+        screenResolution: `${window.screen.width}x${window.screen.height}`,
+      },
+    });
+
+    return () => {
+      const duration = Date.now() - startTime;
+      Sentry.captureMessage("Portfolio Page Session Duration", {
+        level: "info",
+        extra: {
+          durationSeconds: Math.floor(duration / 1000),
+        },
+      });
+    };
+  }, [isMobile]);
   
   // Check localStorage on initial load to see if we should show instructions
   useEffect(() => {
