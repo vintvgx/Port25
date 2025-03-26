@@ -15,6 +15,7 @@ import Header from "../utils/Header";
 import { Background } from "./Background";
 import VersionCtrlDialog from "../Dialogs/VersionCtrlDialog";
 import SplashScreen from "../utils/SplashScreen";
+import * as Sentry from "@sentry/nextjs"; 
 
 
 /**
@@ -42,6 +43,29 @@ export function MainLayout() {
   const [showSwipeInstructions, setShowSwipeInstructions] = useState(false);
 
   const hasMounted = useRef(false);
+
+  useEffect(() => {
+    const startTime = Date.now();
+
+    // Log browser and device details
+    Sentry.captureMessage("Portfolio Accessed", {
+      level: "info",
+      extra: {
+        userAgent: navigator.userAgent,
+        screenResolution: `${window.screen.width}x${window.screen.height}`,
+      },
+    });
+
+    return () => {
+      const duration = Date.now() - startTime;
+      Sentry.captureMessage("Portfolio Page Session Duration", {
+        level: "info",
+        extra: {
+          durationSeconds: Math.floor(duration / 1000),
+        },
+      });
+    };
+  }, []);
 
   useEffect(() => {
     const timerSplash = setTimeout(() => {

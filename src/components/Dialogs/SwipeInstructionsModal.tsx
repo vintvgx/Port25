@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
+import * as Sentry from "@sentry/nextjs"; 
 
 interface SwipeInstructionsModalProps {
   isOpen: boolean;
@@ -22,11 +23,17 @@ export default function SwipeInstructionsModal({
 }: SwipeInstructionsModalProps) {
   const handleDismiss = () => {
     try {
+      // Report to Sentry that swipe instructions were dismissed
+      Sentry.captureMessage("Swipe instructions dismissed", {
+        level: "info"
+      });
+
       // Save to localStorage that user has seen the instructions
       localStorage.setItem(LOCAL_STORAGE_KEY, "true");
       onClose();
     } catch (error) {
       console.warn("Could not save swipe instructions state:", error);
+      Sentry.captureException(error);
     }
   };
 
