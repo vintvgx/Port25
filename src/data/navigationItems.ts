@@ -63,7 +63,7 @@ export const navigationItems: NavItem[] = [
           "2.1.2": {
             title: "COLLECTIONS",
             description:
-              "A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by  prioritizing user content and cultivating a seamless user experience. ",
+              "A full-stack multimedia social application curated and designed for art enthusiasts. Collections reimagines social media by  prioritizing user content and cultivating a seamless user experience.",
             technologies: [
               "React Native",
               "Typescript",
@@ -88,7 +88,7 @@ export const navigationItems: NavItem[] = [
           "1.0.2": {
             title: "COLLECTIONS",
             description:
-              "A multimedia social application curated and designed for art enthusiasts implemented by utilizing React Native and Google Firebase. Collections reimagines social media by prioritizing user content.",
+              "A multimedia social application curated and designed for art enthusiasts implemented by utilizing React Native and Google Firebase. Users can effortlessly share their images and videos, creating a zine of memories. Navigate a curated feed filled with shared moments, with the ability to Create, Read, Update, and Delete.",
             technologies: [
               "React Native",
               "Typescript",
@@ -99,7 +99,7 @@ export const navigationItems: NavItem[] = [
                 src:`/api/video?url=${encodeURIComponent('https://comm-port-bucket.s3.us-east-1.amazonaws.com/studio.cloud/video/port.25/3.0.0/COLLECTIONS/1.0.0/1Collections.mp4')}`,
               },
             links: {
-                github: "https://github.com/vintvgx"
+                github: "https://github.com/vintvgx/COLLECTIONS-legacy"
             },
             version: "1.0.2",
             date: '02/2023'
@@ -109,8 +109,7 @@ export const navigationItems: NavItem[] = [
       {
         name: "Scout",
         id: "scoutv1",
-        //todo update version of scout
-        currentVersion: "1.3.8",
+        currentVersion: "1.3.15",
         category: "project",
         description:
           "SCOUT is a React Native application designed to track issues and errors for your projects using the Sentry API. This app provides real-time error tracking through notifications and integrates with ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.",
@@ -122,7 +121,7 @@ export const navigationItems: NavItem[] = [
           "1.3.15": {
             title: "SCOUT",
             description:
-              "SCOUT is a React Native application designed to track issues and errors for development projects using the Sentry API. This app provides real-time error tracking through notifications, displays access points using ip location and integrates ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.",
+              "SCOUT is a React Native application designed to track issues and errors for development projects using the Sentry API. This app provides real-time error tracking through notifications and integrates ipGeolocation to display the location of IP addresses for each event. Additionally, it utilizes MapView from react-native-maps to visualize these geolocations, helping you gain insights into user engagement and application performance.",
             technologies: [
               "React Native",
               "Typescript",
